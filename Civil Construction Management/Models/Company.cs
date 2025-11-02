@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Civil_Construction_Management.Models
 {
-    internal class Company
+    public abstract class Company
     {
     }
 }
