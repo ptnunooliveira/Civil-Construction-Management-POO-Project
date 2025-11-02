@@ -8,6 +8,5 @@ namespace Civil_Construction_Management.Models
 {
     public abstract class Company
     {
-        
     }
 }
