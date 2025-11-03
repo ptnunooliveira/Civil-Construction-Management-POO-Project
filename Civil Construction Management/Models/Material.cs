@@ -95,11 +95,39 @@ namespace Civil_Construction_Management.Models
 
         #region Methods
 
-        public void QuantityUpdate()
+        public void QuantityUpdate(int howMuch)
+        {
+            if (howMuch == default)
+                throw new ArgumentException("Error, please check the value.");
+
+            if (howMuch <= 0)
+                throw new ArgumentException("You can't add a negative number or zero.");
+
+            Quantity += howMuch;
+        }
+
+        public void CheckQuantity()
+        {
+            // Ver quantidade
+        }
+
+        public void UpdateUnitPrice(double newUnitPrice)
+        {
+            if(newUnitPrice == default)
+                throw new ArgumentException("Error, please check the value.");
+
+            if (newUnitPrice <= 0)
+                throw new ArgumentException($"{Name}'s unity price must be positive.");
+
+            UnitPrice = newUnitPrice;
+        }
+
+        public void ViewDescription()
         {
 
         }
 
         #endregion
+
     }
 }

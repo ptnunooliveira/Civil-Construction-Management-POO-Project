@@ -19,7 +19,7 @@ namespace Civil_Construction_Management.Models
         private string _nif;
         private string _phoneNumber;
         private string _email;
-        private string _role;
+        private Roles _role;
         private double _salaryHour;
         private double _workHours;
         private DateTime _startDate;
@@ -104,22 +104,26 @@ namespace Civil_Construction_Management.Models
             }
         }
 
-        public string Role
+        public Roles Role
         {
             get => _role;
             set
             {
-                if (string.IsNullOrEmpty(value))
+                if (value == default)
                 {
-                    throw new ArgumentException("Role can't be empty or null.");
+                    throw new ArgumentException("Role can't be empty.");
                 }
 
-                if (value.Length > 30)
+                if (Enum.IsDefined<Roles>(value))
                 {
-                    throw new ArgumentException("Role can't be longer than 30 characters.");
+                    _role = value;
                 }
 
-                _role = value;
+                else
+                {
+                    throw new ArgumentException($"The {value} role is not a valid role.");
+                }
+
             }
         }
 
@@ -210,15 +214,15 @@ namespace Civil_Construction_Management.Models
             {
                 throw new ArgumentException("New role can't be empty or null.");
             }
-
-            if (string.Compare(newRole, Role, true) == 0)
-            {
-                throw new ArgumentException($"{Name} is already at this role.");
-            }
-
+                     
             if (Enum.TryParse<Roles>(newRole, true, out Roles resultRole))
             {
-                Role = resultRole.ToString();
+                if (Role == resultRole)
+                {
+                    throw new ArgumentException($"The employee {Name} has already this role.");
+                }
+
+                Role = resultRole;
             }
 
             else
@@ -239,5 +243,6 @@ namespace Civil_Construction_Management.Models
         }
 
         #endregion
+
     }
 }

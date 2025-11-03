@@ -68,9 +68,10 @@ namespace Civil_Construction_Management.Models
 
         #region Constructor
 
-        public Subcontractor(double costHour, TypeOfServices typeOfService, string name, string nif, DateTime foundationDate)
-            : base(name, nif, foundationDate)
+        public Subcontractor(double costHour, TypeOfServices typeOfService, string name, string nif, string address, DateTime foundationDate)
+            : base(name, nif, address, foundationDate)
         {
+            
             CostHour = costHour;
             TypeOfService = typeOfService;
 

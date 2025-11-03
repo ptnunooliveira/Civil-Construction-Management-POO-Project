@@ -19,6 +19,7 @@ namespace Civil_Construction_Management.Models
 
         #endregion
 
+
         #region Public Properties
 
         public int ID { get; }
@@ -44,6 +45,7 @@ namespace Civil_Construction_Management.Models
 
         #endregion
 
+
         #region Constructor
 
         public Warehouse(string county)
@@ -59,11 +61,49 @@ namespace Civil_Construction_Management.Models
 
         #region Methods
 
-        public void AddMaterial()
+        public void AddMaterial(Material m)
         {
+            if (m == null)
+                throw new ArgumentException("Material can't be null.");
+
+            // Fazer DLL para ver se há repetido. 
+
+            _materials.Add(m);
+        }
+                
+        public void ElectEmployee(Employee e)
+        {
+
+            if (e == null)
+                throw new ArgumentException("Employee can't be null.");
+
+            // Fazer DLL para procurar numa lista para ver se existe. 
 
         }
 
+        public void CheckStock(Material m)
+        {
+
+            if (m == null)
+                throw new ArgumentException("Material can't be null");
+
+            // Fazer DLL para procurar numa lista para ver se existe.
+
+            
+        }
+
+        public double StockValue()
+        {
+            double total = 0;
+
+            foreach(Material m in _materials)
+                total += (m.UnitPrice * m.Quantity);
+
+            return total;
+        }
+
+
         #endregion
+
     }
 }

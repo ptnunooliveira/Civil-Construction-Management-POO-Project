@@ -6,13 +6,7 @@ using System.Threading.Tasks;
 
 namespace Civil_Construction_Management.Models
 {
-    public class Organization : Company
+    public class Project
     {
-
-        #region Private Fields
-
-
-
-        #endregion
     }
 }
