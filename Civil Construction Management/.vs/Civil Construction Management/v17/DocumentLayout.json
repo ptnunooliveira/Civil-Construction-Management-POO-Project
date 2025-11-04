@@ -3,10 +3,6 @@
   "WorkspaceRootPath": "C:\\Users\\ptnun\\Desktop\\2\u00BA ANO\\Programa\u00E7\u00E3o Orientada a Objetos\\TrabalhoPratico\\Projeto\\Civil Construction Management\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{8A479F87-239E-4917-9079-FCDFD50A469C}|Civil Construction Management.csproj|c:\\users\\ptnun\\desktop\\2\u00BA ano\\programa\u00E7\u00E3o orientada a objetos\\trabalhopratico\\projeto\\civil construction management\\models\\budget.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8A479F87-239E-4917-9079-FCDFD50A469C}|Civil Construction Management.csproj|solutionrelative:models\\budget.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{8A479F87-239E-4917-9079-FCDFD50A469C}|Civil Construction Management.csproj|c:\\users\\ptnun\\desktop\\2\u00BA ano\\programa\u00E7\u00E3o orientada a objetos\\trabalhopratico\\projeto\\civil construction management\\models\\organization.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8A479F87-239E-4917-9079-FCDFD50A469C}|Civil Construction Management.csproj|solutionrelative:models\\organization.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
@@ -31,25 +27,12 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Budget.cs",
-              "DocumentMoniker": "C:\\Users\\ptnun\\Desktop\\2\u00BA ANO\\Programa\u00E7\u00E3o Orientada a Objetos\\TrabalhoPratico\\Projeto\\Civil Construction Management\\Models\\Budget.cs",
-              "RelativeDocumentMoniker": "Models\\Budget.cs",
-              "ToolTip": "C:\\Users\\ptnun\\Desktop\\2\u00BA ANO\\Programa\u00E7\u00E3o Orientada a Objetos\\TrabalhoPratico\\Projeto\\Civil Construction Management\\Models\\Budget.cs",
-              "RelativeToolTip": "Models\\Budget.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAeAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-03T15:31:34.63Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
               "Title": "Organization.cs",
               "DocumentMoniker": "C:\\Users\\ptnun\\Desktop\\2\u00BA ANO\\Programa\u00E7\u00E3o Orientada a Objetos\\TrabalhoPratico\\Projeto\\Civil Construction Management\\Models\\Organization.cs",
               "RelativeDocumentMoniker": "Models\\Organization.cs",
               "ToolTip": "C:\\Users\\ptnun\\Desktop\\2\u00BA ANO\\Programa\u00E7\u00E3o Orientada a Objetos\\TrabalhoPratico\\Projeto\\Civil Construction Management\\Models\\Organization.cs",
               "RelativeToolTip": "Models\\Organization.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-03T14:52:20.969Z",
               "EditorCaption": ""
