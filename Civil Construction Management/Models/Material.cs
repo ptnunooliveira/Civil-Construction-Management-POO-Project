@@ -39,6 +39,8 @@ namespace Civil_Construction_Management.Models
                 {
                     throw new ArgumentException("Name can't be longer than 50 characters.");
                 }
+
+                _name = value;
             }
         }
 

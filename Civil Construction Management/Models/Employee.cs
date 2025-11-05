@@ -167,7 +167,7 @@ namespace Civil_Construction_Management.Models
 
         #region Constructor
 
-        public Employee(string name, string nif, string phoneNumber, string email, string role, double salaryHour, double workHours, DateTime startDate)
+        public Employee(string name, string nif, string phoneNumber, string email, Roles role, double salaryHour, double workHours, DateTime startDate)
 
         {
             Name = name;
