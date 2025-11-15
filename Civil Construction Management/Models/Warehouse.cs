@@ -43,6 +43,9 @@ namespace Civil_Construction_Management.Models
             }
         }
 
+        public List<Material> Materials => _materials;
+        public Employee Employee => _employee;
+
         #endregion
 
 
