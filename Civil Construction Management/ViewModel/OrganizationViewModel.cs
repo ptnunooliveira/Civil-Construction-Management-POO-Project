@@ -5,12 +5,7 @@ using Civil_Construction_Management.ViewModel.ProjectsFolder;
 using Civil_Construction_Management.ViewModel.SubcontractorFolder;
 using Civil_Construction_Management.ViewModel.VehicleFolder;
 using Civil_Construction_Management.ViewModel.WarehouseFolder;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Civil_Construction_Management.ViewModel
 {

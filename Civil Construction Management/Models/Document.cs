@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Civil_Construction_Management.Enums;
+﻿using Civil_Construction_Management.Enums;
 
 namespace Civil_Construction_Management.Models
 {
