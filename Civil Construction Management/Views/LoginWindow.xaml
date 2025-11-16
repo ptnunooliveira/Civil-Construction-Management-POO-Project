@@ -1,0 +1,36 @@
+﻿<Window x:Class="Civil_Construction_Management.Views.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Civil_Construction_Management.Views"
+        mc:Ignorable="d"
+        Title="LoginWindow" Height="500" Width="400">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="Images/LoginBackground.png" Stretch="UniformToFill">
+                <ImageBrush.Transform>
+                    <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
+                </ImageBrush.Transform>
+            </ImageBrush>
+        </Grid.Background>
+        <StackPanel 
+            Background="Transparent" 
+            Width="300px" 
+            Height="70px" 
+            VerticalAlignment="Top"
+            Margin="0 50 0 0">
+            <Label
+                Content="BuildSmart"                                
+                FontSize="60"
+                FontStyle="Italic"
+                FontFamily="Impact"
+                Foreground="Purple">
+            </Label>
+        </StackPanel>
+
+        <Grid Width="250" Height="200" VerticalAlignment="Bottom" Margin="0 0 0 100">
+            
+        </Grid>
+    </Grid>
+</Window>
