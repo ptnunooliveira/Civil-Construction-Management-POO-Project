@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Civil_Construction_Management.Views"
         mc:Ignorable="d"
-        Title="LoginWindow" Height="500" Width="400">
+        Title="Login" Height="500" Width="400">
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="Images/LoginBackground.png" Stretch="UniformToFill">
-                <ImageBrush.Transform>
-                    <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
-                </ImageBrush.Transform>
+            <ImageBrush ImageSource="/Views/Images/LoginBackground.png" Stretch="UniformToFill" Opacity="0.7" AlignmentX="Right">
+                <ImageBrush.Transform>                    
+                    <ScaleTransform ScaleX="1.4" ScaleY="1"/>                        
+                </ImageBrush.Transform>                
             </ImageBrush>
         </Grid.Background>
         <StackPanel 
@@ -25,12 +25,85 @@
                 FontSize="60"
                 FontStyle="Italic"
                 FontFamily="Impact"
-                Foreground="Purple">
+                Foreground="MediumOrchid">
             </Label>
         </StackPanel>
 
-        <Grid Width="250" Height="200" VerticalAlignment="Bottom" Margin="0 0 0 100">
-            
+        <Grid Width="250" Height="110" VerticalAlignment="Bottom" Margin="0 0 0 150">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>                
+            </Grid.RowDefinitions>
+
+            <Label 
+                Grid.Row="0"
+                Content="Login"                
+                FontSize="22"
+                Foreground="MediumOrchid"
+                FontFamily="Segoe UI Semilight"
+                Margin="0 0 0 0">
+            </Label>
+
+            <StackPanel Grid.Row="1" Orientation="Vertical">
+                <TextBox 
+                    Name ="UsernameTextBox" 
+                    Text="Username"                    
+                    FontFamily="Courier New"
+                    Foreground="LightGray"                   
+                    Height="30px"
+                    Width="250px"
+                    HorizontalContentAlignment="center"
+                    VerticalContentAlignment="center"
+                    BorderBrush="Black"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="2" Orientation="Vertical">
+                <TextBox 
+                    Name ="PasswordTextBox" 
+                    Text="Password"                    
+                    FontFamily="Courier New"
+                    Foreground="LightGray"                   
+                    Height="30px"
+                    Width="250px"
+                    HorizontalContentAlignment="center"
+                    VerticalContentAlignment="center"
+                    Margin="0 5 0 0"
+                    BorderBrush="Black"/>
+            </StackPanel>                  
+        </Grid>
+
+        <Grid VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="100px" Height="60px" Margin="0 0 25 25">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel>
+                <Button Grid.Row="0"
+                    Content="Login"
+                    FontSize="16"
+                    Background="MediumOrchid"
+                    Foreground="White"
+                    FontFamily="Segoe UI Light"
+                    HorizontalContentAlignment="center"
+                    VerticalContentAlignment="center"
+                    BorderBrush="Black"
+                    Width="70px"/>
+            </StackPanel>
+
+            <StackPanel Margin="0 25 0 0">
+                <Button Grid.Row="1"
+                    Content="Create an account"
+                    FontSize="12"
+                    Background="Transparent"
+                    Foreground="MediumOrchid"
+                    FontFamily="Segoe UI Light"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Bottom"
+                    BorderBrush="Transparent"
+                    />
+            </StackPanel>
         </Grid>
     </Grid>
 </Window>
