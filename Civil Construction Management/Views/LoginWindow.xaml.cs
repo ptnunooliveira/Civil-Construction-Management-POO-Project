@@ -5,9 +5,7 @@ using System.Windows;
 
 namespace Civil_Construction_Management.Views
 {
-    /// <summary>
-    /// Lógica interna para LoginWindow.xaml
-    /// </summary>
+
     public partial class LoginWindow : Window
     {
         private LoginViewModel _viewModel;
@@ -22,7 +20,6 @@ namespace Civil_Construction_Management.Views
             _viewModel = new LoginViewModel(authService);
             _viewModel.HideWindowAction = Hide;
             DataContext = _viewModel;
-
         }
 
     }

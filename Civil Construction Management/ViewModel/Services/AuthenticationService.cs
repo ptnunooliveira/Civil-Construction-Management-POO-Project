@@ -22,7 +22,7 @@ namespace Civil_Construction_Management.ViewModel.Services
 
             User user = _userRepository.GetUserByUsername(username);
 
-            if (user != null)
+            if (user == null)
                 return false;
 
             return user.Password == password;

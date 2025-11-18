@@ -36,5 +36,6 @@ namespace Civil_Construction_Management.ViewModel
             Warehouses = new ObservableCollection<WarehouseViewModel>(_organization.Warehouses.Select(w => new WarehouseViewModel(w)));
         }
 
+
     }
 }

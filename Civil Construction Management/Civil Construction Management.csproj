@@ -12,6 +12,7 @@
   <ItemGroup>
     <None Remove="Views\Images\CreateAccountBackground.jpg" />
     <None Remove="Views\Images\LoginBackground.png" />
+    <None Remove="Views\Images\MainWindowBackground.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -19,6 +20,9 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Views\Images\LoginBackground.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Views\Images\MainWindowBackground.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

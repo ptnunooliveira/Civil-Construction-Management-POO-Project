@@ -80,7 +80,8 @@
             </Grid.RowDefinitions>
 
             <StackPanel>
-                <Button Grid.Row="0"
+                <Button 
+                    Grid.Row="0"
                     Content="Login"
                     FontSize="16"
                     Background="MediumOrchid"
@@ -89,7 +90,8 @@
                     HorizontalContentAlignment="center"
                     VerticalContentAlignment="center"
                     BorderBrush="Black"
-                    Width="70px"/>
+                    Width="70px"
+                    Command="{Binding LoginCommand}"/>
             </StackPanel>
 
             <StackPanel Margin="0 25 0 0">

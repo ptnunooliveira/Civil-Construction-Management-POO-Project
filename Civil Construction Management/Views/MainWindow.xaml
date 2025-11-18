@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Civil_Construction_Management"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="BuildSmart" Height="450" Width="800">
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="/Views/Images/MainWindowBackground.png"
