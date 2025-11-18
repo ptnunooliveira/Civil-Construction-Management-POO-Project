@@ -27,5 +27,30 @@ namespace Civil_Construction_Management.ViewModel.Services
 
             return user.Password == password;
         }
+
+        public bool ValidUsername(string username)
+        {
+
+            if (string.IsNullOrEmpty(username))
+                throw new ArgumentNullException("Argument not defined.");
+
+            User user = _userRepository.GetUserByUsername(username);
+
+            if (user == default)
+                return false;
+
+            return true;
+        }
+
+        public bool CreateUser(User user)
+        {
+
+            if(user == default)           
+                throw new ArgumentException("Argument not defined.");
+
+            _userRepository.AddUser(user);
+
+            return true;
+        }
     }
 }

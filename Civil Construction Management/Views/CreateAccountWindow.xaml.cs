@@ -6,24 +6,23 @@ using System.Windows;
 namespace Civil_Construction_Management.Views
 {
     /// <summary>
-    /// Lógica interna para LoginWindow.xaml
+    /// Lógica interna para CreateAccountWindow.xaml
     /// </summary>
-    public partial class LoginWindow : Window
+    public partial class CreateAccountWindow : Window
     {
-        private LoginViewModel _viewModel;
-        
-        public LoginWindow()
+
+        private CreateAccountViewModel _createAccount;
+
+        public CreateAccountWindow()
         {
 
             InitializeComponent();
             UserRepository userRepository = new UserRepository();
             AuthenticationService authService = new AuthenticationService(userRepository);
 
-            _viewModel = new LoginViewModel(authService);
-            _viewModel.HideWindowAction = Hide;
-            DataContext = _viewModel;
-
+            _createAccount = new CreateAccountViewModel(authService);
+            _createAccount.HideWindowAction = Hide;
+            DataContext = _createAccount;
         }
-
     }
 }

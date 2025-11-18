@@ -10,10 +10,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Views\Images\CreateAccountBackground.jpg" />
     <None Remove="Views\Images\LoginBackground.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Views\Images\CreateAccountBackground.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Views\Images\LoginBackground.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>

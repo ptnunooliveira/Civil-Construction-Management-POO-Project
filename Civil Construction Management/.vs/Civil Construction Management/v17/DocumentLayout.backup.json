@@ -3,20 +3,28 @@
   "WorkspaceRootPath": "C:\\Users\\ptnun\\Desktop\\2\u00BA ANO\\Programa\u00E7\u00E3o Orientada a Objetos\\TrabalhoPratico\\Projeto\\Civil Construction Management\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{8A479F87-239E-4917-9079-FCDFD50A469C}|Civil Construction Management.csproj|c:\\users\\ptnun\\desktop\\2\u00BA ano\\programa\u00E7\u00E3o orientada a objetos\\trabalhopratico\\projeto\\civil construction management\\views\\loginwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{8A479F87-239E-4917-9079-FCDFD50A469C}|Civil Construction Management.csproj|solutionrelative:views\\loginwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{8A479F87-239E-4917-9079-FCDFD50A469C}|Civil Construction Management.csproj|c:\\users\\ptnun\\desktop\\2\u00BA ano\\programa\u00E7\u00E3o orientada a objetos\\trabalhopratico\\projeto\\civil construction management\\models\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8A479F87-239E-4917-9079-FCDFD50A469C}|Civil Construction Management.csproj|solutionrelative:models\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8A479F87-239E-4917-9079-FCDFD50A469C}|Civil Construction Management.csproj|c:\\users\\ptnun\\desktop\\2\u00BA ano\\programa\u00E7\u00E3o orientada a objetos\\trabalhopratico\\projeto\\civil construction management\\views\\loginwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8A479F87-239E-4917-9079-FCDFD50A469C}|Civil Construction Management.csproj|solutionrelative:views\\loginwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8A479F87-239E-4917-9079-FCDFD50A469C}|Civil Construction Management.csproj|c:\\users\\ptnun\\desktop\\2\u00BA ano\\programa\u00E7\u00E3o orientada a objetos\\trabalhopratico\\projeto\\civil construction management\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{8A479F87-239E-4917-9079-FCDFD50A469C}|Civil Construction Management.csproj|solutionrelative:app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{8A479F87-239E-4917-9079-FCDFD50A469C}|Civil Construction Management.csproj|c:\\users\\ptnun\\desktop\\2\u00BA ano\\programa\u00E7\u00E3o orientada a objetos\\trabalhopratico\\projeto\\civil construction management\\viewmodel\\createaccountviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8A479F87-239E-4917-9079-FCDFD50A469C}|Civil Construction Management.csproj|solutionrelative:viewmodel\\createaccountviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{8A479F87-239E-4917-9079-FCDFD50A469C}|Civil Construction Management.csproj|c:\\users\\ptnun\\desktop\\2\u00BA ano\\programa\u00E7\u00E3o orientada a objetos\\trabalhopratico\\projeto\\civil construction management\\viewmodel\\loginviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8A479F87-239E-4917-9079-FCDFD50A469C}|Civil Construction Management.csproj|solutionrelative:viewmodel\\loginviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A479F87-239E-4917-9079-FCDFD50A469C}|Civil Construction Management.csproj|c:\\users\\ptnun\\desktop\\2\u00BA ano\\programa\u00E7\u00E3o orientada a objetos\\trabalhopratico\\projeto\\civil construction management\\viewmodel\\services\\authenticationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8A479F87-239E-4917-9079-FCDFD50A469C}|Civil Construction Management.csproj|solutionrelative:viewmodel\\services\\authenticationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A479F87-239E-4917-9079-FCDFD50A469C}|Civil Construction Management.csproj|c:\\users\\ptnun\\desktop\\2\u00BA ano\\programa\u00E7\u00E3o orientada a objetos\\trabalhopratico\\projeto\\civil construction management\\viewmodel\\interfaces\\iauthenticationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8A479F87-239E-4917-9079-FCDFD50A469C}|Civil Construction Management.csproj|solutionrelative:viewmodel\\interfaces\\iauthenticationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A479F87-239E-4917-9079-FCDFD50A469C}|Civil Construction Management.csproj|c:\\users\\ptnun\\desktop\\2\u00BA ano\\programa\u00E7\u00E3o orientada a objetos\\trabalhopratico\\projeto\\civil construction management\\models\\repositories\\interfaces\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8A479F87-239E-4917-9079-FCDFD50A469C}|Civil Construction Management.csproj|solutionrelative:models\\repositories\\interfaces\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,7 +34,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -38,53 +46,79 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "App.xaml",
-              "DocumentMoniker": "C:\\Users\\ptnun\\Desktop\\2\u00BA ANO\\Programa\u00E7\u00E3o Orientada a Objetos\\TrabalhoPratico\\Projeto\\Civil Construction Management\\App.xaml",
-              "RelativeDocumentMoniker": "App.xaml",
-              "ToolTip": "C:\\Users\\ptnun\\Desktop\\2\u00BA ANO\\Programa\u00E7\u00E3o Orientada a Objetos\\TrabalhoPratico\\Projeto\\Civil Construction Management\\App.xaml",
-              "RelativeToolTip": "App.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-11-17T00:32:51.021Z",
+              "DocumentIndex": 0,
+              "Title": "UserRepository.cs",
+              "DocumentMoniker": "C:\\Users\\ptnun\\Desktop\\2\u00BA ANO\\Programa\u00E7\u00E3o Orientada a Objetos\\TrabalhoPratico\\Projeto\\Civil Construction Management\\Models\\Repositories\\UserRepository.cs",
+              "RelativeDocumentMoniker": "Models\\Repositories\\UserRepository.cs",
+              "ToolTip": "C:\\Users\\ptnun\\Desktop\\2\u00BA ANO\\Programa\u00E7\u00E3o Orientada a Objetos\\TrabalhoPratico\\Projeto\\Civil Construction Management\\Models\\Repositories\\UserRepository.cs",
+              "RelativeToolTip": "Models\\Repositories\\UserRepository.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAAwBUAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-18T14:22:37.578Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "LoginWindow.xaml",
-              "DocumentMoniker": "C:\\Users\\ptnun\\Desktop\\2\u00BA ANO\\Programa\u00E7\u00E3o Orientada a Objetos\\TrabalhoPratico\\Projeto\\Civil Construction Management\\Views\\LoginWindow.xaml",
-              "RelativeDocumentMoniker": "Views\\LoginWindow.xaml",
-              "ToolTip": "C:\\Users\\ptnun\\Desktop\\2\u00BA ANO\\Programa\u00E7\u00E3o Orientada a Objetos\\TrabalhoPratico\\Projeto\\Civil Construction Management\\Views\\LoginWindow.xaml",
-              "RelativeToolTip": "Views\\LoginWindow.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-11-17T00:32:38.326Z",
+              "DocumentIndex": 4,
+              "Title": "IAuthenticationService.cs",
+              "DocumentMoniker": "C:\\Users\\ptnun\\Desktop\\2\u00BA ANO\\Programa\u00E7\u00E3o Orientada a Objetos\\TrabalhoPratico\\Projeto\\Civil Construction Management\\ViewModel\\Interfaces\\IAuthenticationService.cs",
+              "RelativeDocumentMoniker": "ViewModel\\Interfaces\\IAuthenticationService.cs",
+              "ToolTip": "C:\\Users\\ptnun\\Desktop\\2\u00BA ANO\\Programa\u00E7\u00E3o Orientada a Objetos\\TrabalhoPratico\\Projeto\\Civil Construction Management\\ViewModel\\Interfaces\\IAuthenticationService.cs",
+              "RelativeToolTip": "ViewModel\\Interfaces\\IAuthenticationService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-18T14:51:29.308Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AuthenticationService.cs",
+              "DocumentMoniker": "C:\\Users\\ptnun\\Desktop\\2\u00BA ANO\\Programa\u00E7\u00E3o Orientada a Objetos\\TrabalhoPratico\\Projeto\\Civil Construction Management\\ViewModel\\Services\\AuthenticationService.cs",
+              "RelativeDocumentMoniker": "ViewModel\\Services\\AuthenticationService.cs",
+              "ToolTip": "C:\\Users\\ptnun\\Desktop\\2\u00BA ANO\\Programa\u00E7\u00E3o Orientada a Objetos\\TrabalhoPratico\\Projeto\\Civil Construction Management\\ViewModel\\Services\\AuthenticationService.cs",
+              "RelativeToolTip": "ViewModel\\Services\\AuthenticationService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-18T14:19:47.175Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "LoginWindow.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\ptnun\\Desktop\\2\u00BA ANO\\Programa\u00E7\u00E3o Orientada a Objetos\\TrabalhoPratico\\Projeto\\Civil Construction Management\\Views\\LoginWindow.xaml.cs",
-              "RelativeDocumentMoniker": "Views\\LoginWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\ptnun\\Desktop\\2\u00BA ANO\\Programa\u00E7\u00E3o Orientada a Objetos\\TrabalhoPratico\\Projeto\\Civil Construction Management\\Views\\LoginWindow.xaml.cs",
-              "RelativeToolTip": "Views\\LoginWindow.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAlAAAAAAAAAA==",
+              "Title": "CreateAccountViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\ptnun\\Desktop\\2\u00BA ANO\\Programa\u00E7\u00E3o Orientada a Objetos\\TrabalhoPratico\\Projeto\\Civil Construction Management\\ViewModel\\CreateAccountViewModel.cs",
+              "RelativeDocumentMoniker": "ViewModel\\CreateAccountViewModel.cs",
+              "ToolTip": "C:\\Users\\ptnun\\Desktop\\2\u00BA ANO\\Programa\u00E7\u00E3o Orientada a Objetos\\TrabalhoPratico\\Projeto\\Civil Construction Management\\ViewModel\\CreateAccountViewModel.cs",
+              "RelativeToolTip": "ViewModel\\CreateAccountViewModel.cs",
+              "ViewState": "AgIAAG4AAAAAAAAAAAAvwIAAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-17T00:29:50.358Z",
+              "WhenOpened": "2025-11-17T12:23:40.076Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "LoginViewModel.cs",
               "DocumentMoniker": "C:\\Users\\ptnun\\Desktop\\2\u00BA ANO\\Programa\u00E7\u00E3o Orientada a Objetos\\TrabalhoPratico\\Projeto\\Civil Construction Management\\ViewModel\\LoginViewModel.cs",
               "RelativeDocumentMoniker": "ViewModel\\LoginViewModel.cs",
               "ToolTip": "C:\\Users\\ptnun\\Desktop\\2\u00BA ANO\\Programa\u00E7\u00E3o Orientada a Objetos\\TrabalhoPratico\\Projeto\\Civil Construction Management\\ViewModel\\LoginViewModel.cs",
               "RelativeToolTip": "ViewModel\\LoginViewModel.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAuwBMAAAAzAAAAAAAAAA==",
+              "ViewState": "AgIAACEAAAAAAAAAAAAvwDoAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-16T22:16:02.502Z",
+              "WhenOpened": "2025-11-18T14:15:15.335Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "IUserRepository.cs",
+              "DocumentMoniker": "C:\\Users\\ptnun\\Desktop\\2\u00BA ANO\\Programa\u00E7\u00E3o Orientada a Objetos\\TrabalhoPratico\\Projeto\\Civil Construction Management\\Models\\Repositories\\Interfaces\\IUserRepository.cs",
+              "RelativeDocumentMoniker": "Models\\Repositories\\Interfaces\\IUserRepository.cs",
+              "ToolTip": "C:\\Users\\ptnun\\Desktop\\2\u00BA ANO\\Programa\u00E7\u00E3o Orientada a Objetos\\TrabalhoPratico\\Projeto\\Civil Construction Management\\Models\\Repositories\\Interfaces\\IUserRepository.cs",
+              "RelativeToolTip": "Models\\Repositories\\Interfaces\\IUserRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-18T15:12:26.382Z"
             }
           ]
         }

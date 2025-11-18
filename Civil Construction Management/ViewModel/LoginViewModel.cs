@@ -1,4 +1,5 @@
 ﻿using Civil_Construction_Management.ViewModel.Interfaces;
+using Civil_Construction_Management.Views;
 using System.Windows;
 using System.Windows.Input;
 
@@ -9,8 +10,7 @@ namespace Civil_Construction_Management.ViewModel
 
         #region Private Fields
 
-        private IAuthenticationService _authenticationService;
-        private ViewModelCommand _command;
+        private IAuthenticationService _authenticationService;      
         private string _username;
         private string _password;
 
@@ -19,6 +19,7 @@ namespace Civil_Construction_Management.ViewModel
         #region Public Properties
         public Action? HideWindowAction { get; set; }
         public ICommand LoginCommand { get; }
+        public ICommand CreateAccountPageCommand { get; }
 
         public string Username
         {
@@ -28,7 +29,7 @@ namespace Civil_Construction_Management.ViewModel
                 if(_username != value)
                 {
                     _username = value;
-                    OnPropertyChanged(Username);
+                    OnPropertyChanged(nameof(Username));
                 }
             }
         }
@@ -41,7 +42,7 @@ namespace Civil_Construction_Management.ViewModel
                 if(_password != value)
                 {
                     _password = value;
-                    OnPropertyChanged(Password);
+                    OnPropertyChanged(nameof(Password));
                 }
             }
         }
@@ -52,8 +53,11 @@ namespace Civil_Construction_Management.ViewModel
         {
 
             _authenticationService = authenticationService;
+
             LoginCommand = new ViewModelCommand(ExecuteLoginCommand);
+            CreateAccountPageCommand = new ViewModelCommand(ExecuteCreateAccountPageCommand);
         }
+
 
         private void ExecuteLoginCommand(object parameter)
         {
@@ -64,6 +68,7 @@ namespace Civil_Construction_Management.ViewModel
                 {
                     WindowStartupLocation = WindowStartupLocation.CenterScreen
                 };
+
                 HideWindowAction?.Invoke();
                 mainWindow.Show();
             }
@@ -71,6 +76,17 @@ namespace Civil_Construction_Management.ViewModel
             {
                 MessageBox.Show("No user");
             }
+        }
+
+        private void ExecuteCreateAccountPageCommand(object parameter)
+        {
+            CreateAccountWindow createAccountWindow = new CreateAccountWindow()
+            {
+                WindowStartupLocation = WindowStartupLocation.CenterScreen
+            };
+
+            HideWindowAction?.Invoke();
+            createAccountWindow.Show();
         }
     }
 }

@@ -7,6 +7,75 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Views/Images/MainWindowBackground.png"
+                    Stretch="UniformToFill"
+                    Opacity="0.3"/>
+        </Grid.Background>
+       
+        <Border BorderBrush="Black"
+            BorderThickness="3"
+            Background="Transparent"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Margin="25 0 0 0">
 
+            <Grid Background="Transparent"
+              Height="400"
+              Width="130">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <Button Grid.Row="0"
+                    Content="Employees"
+                    FontSize="16"
+                    FontFamily="Segoe UI Light"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    Margin="0 120 0 0"/>
+
+                <Button Grid.Row="1"
+                    Content="Project"
+                    FontSize="16"
+                    FontFamily="Segoe UI Light"
+                    Background="Transparent"
+                    BorderBrush="Transparent"/>
+
+                <Button Grid.Row="2"
+                    Content="Vehicles"
+                    FontSize="16"
+                    FontFamily="Segoe UI Light"
+                    Background="Transparent"
+                    BorderBrush="Transparent"/>
+
+                <Button Grid.Row="3"
+                    Content="Warehouses"
+                    FontSize="16"
+                    FontFamily="Segoe UI Light"
+                    Background="Transparent"
+                    BorderBrush="Transparent"/>
+
+                <Button Grid.Row="4"
+                    Content="Subcontractors"
+                    FontSize="16"
+                    FontFamily="Segoe UI Light"
+                    Background="Transparent"
+                    BorderBrush="Transparent"/>
+
+                <Button Grid.Row="5"
+                    Content="Project's Budgets"
+                    FontSize="16"
+                    FontFamily="Segoe UI Light"
+                    Background="Transparent"
+                    BorderBrush="Transparent"/>
+            </Grid>
+        </Border>
     </Grid>
 </Window>

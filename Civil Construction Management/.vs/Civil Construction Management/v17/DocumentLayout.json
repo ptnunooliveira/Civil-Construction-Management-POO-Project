@@ -3,20 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\ptnun\\Desktop\\2\u00BA ANO\\Programa\u00E7\u00E3o Orientada a Objetos\\TrabalhoPratico\\Projeto\\Civil Construction Management\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{8A479F87-239E-4917-9079-FCDFD50A469C}|Civil Construction Management.csproj|c:\\users\\ptnun\\desktop\\2\u00BA ano\\programa\u00E7\u00E3o orientada a objetos\\trabalhopratico\\projeto\\civil construction management\\views\\loginwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{8A479F87-239E-4917-9079-FCDFD50A469C}|Civil Construction Management.csproj|solutionrelative:views\\loginwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{8A479F87-239E-4917-9079-FCDFD50A469C}|Civil Construction Management.csproj|c:\\users\\ptnun\\desktop\\2\u00BA ano\\programa\u00E7\u00E3o orientada a objetos\\trabalhopratico\\projeto\\civil construction management\\views\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{8A479F87-239E-4917-9079-FCDFD50A469C}|Civil Construction Management.csproj|solutionrelative:views\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8A479F87-239E-4917-9079-FCDFD50A469C}|Civil Construction Management.csproj|c:\\users\\ptnun\\desktop\\2\u00BA ano\\programa\u00E7\u00E3o orientada a objetos\\trabalhopratico\\projeto\\civil construction management\\views\\loginwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8A479F87-239E-4917-9079-FCDFD50A469C}|Civil Construction Management.csproj|solutionrelative:views\\loginwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8A479F87-239E-4917-9079-FCDFD50A469C}|Civil Construction Management.csproj|c:\\users\\ptnun\\desktop\\2\u00BA ano\\programa\u00E7\u00E3o orientada a objetos\\trabalhopratico\\projeto\\civil construction management\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{8A479F87-239E-4917-9079-FCDFD50A469C}|Civil Construction Management.csproj|solutionrelative:app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8A479F87-239E-4917-9079-FCDFD50A469C}|Civil Construction Management.csproj|c:\\users\\ptnun\\desktop\\2\u00BA ano\\programa\u00E7\u00E3o orientada a objetos\\trabalhopratico\\projeto\\civil construction management\\viewmodel\\loginviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8A479F87-239E-4917-9079-FCDFD50A469C}|Civil Construction Management.csproj|solutionrelative:viewmodel\\loginviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8A479F87-239E-4917-9079-FCDFD50A469C}|Civil Construction Management.csproj|c:\\users\\ptnun\\desktop\\2\u00BA ano\\programa\u00E7\u00E3o orientada a objetos\\trabalhopratico\\projeto\\civil construction management\\views\\createaccountwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{8A479F87-239E-4917-9079-FCDFD50A469C}|Civil Construction Management.csproj|solutionrelative:views\\createaccountwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,52 +30,47 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "App.xaml",
-              "DocumentMoniker": "C:\\Users\\ptnun\\Desktop\\2\u00BA ANO\\Programa\u00E7\u00E3o Orientada a Objetos\\TrabalhoPratico\\Projeto\\Civil Construction Management\\App.xaml",
-              "RelativeDocumentMoniker": "App.xaml",
-              "ToolTip": "C:\\Users\\ptnun\\Desktop\\2\u00BA ANO\\Programa\u00E7\u00E3o Orientada a Objetos\\TrabalhoPratico\\Projeto\\Civil Construction Management\\App.xaml",
-              "RelativeToolTip": "App.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-11-17T00:32:51.021Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "LoginWindow.xaml",
-              "DocumentMoniker": "C:\\Users\\ptnun\\Desktop\\2\u00BA ANO\\Programa\u00E7\u00E3o Orientada a Objetos\\TrabalhoPratico\\Projeto\\Civil Construction Management\\Views\\LoginWindow.xaml",
-              "RelativeDocumentMoniker": "Views\\LoginWindow.xaml",
-              "ToolTip": "C:\\Users\\ptnun\\Desktop\\2\u00BA ANO\\Programa\u00E7\u00E3o Orientada a Objetos\\TrabalhoPratico\\Projeto\\Civil Construction Management\\Views\\LoginWindow.xaml",
-              "RelativeToolTip": "Views\\LoginWindow.xaml",
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\ptnun\\Desktop\\2\u00BA ANO\\Programa\u00E7\u00E3o Orientada a Objetos\\TrabalhoPratico\\Projeto\\Civil Construction Management\\Views\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "Views\\MainWindow.xaml",
+              "ToolTip": "C:\\Users\\ptnun\\Desktop\\2\u00BA ANO\\Programa\u00E7\u00E3o Orientada a Objetos\\TrabalhoPratico\\Projeto\\Civil Construction Management\\Views\\MainWindow.xaml",
+              "RelativeToolTip": "Views\\MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-11-17T00:32:38.326Z",
+              "WhenOpened": "2025-11-18T15:37:32.825Z",
               "EditorCaption": ""
-            },
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "FloatingWindowState": {
+        "Id": "44ac1841-46c8-4e1b-9814-6d6683950bb2",
+        "Display": 0,
+        "X": 815,
+        "Y": 382,
+        "Width": 1249,
+        "Height": 640,
+        "WindowState": 0
+      },
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "LoginWindow.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\ptnun\\Desktop\\2\u00BA ANO\\Programa\u00E7\u00E3o Orientada a Objetos\\TrabalhoPratico\\Projeto\\Civil Construction Management\\Views\\LoginWindow.xaml.cs",
-              "RelativeDocumentMoniker": "Views\\LoginWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\ptnun\\Desktop\\2\u00BA ANO\\Programa\u00E7\u00E3o Orientada a Objetos\\TrabalhoPratico\\Projeto\\Civil Construction Management\\Views\\LoginWindow.xaml.cs",
-              "RelativeToolTip": "Views\\LoginWindow.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-17T00:29:50.358Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "LoginViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\ptnun\\Desktop\\2\u00BA ANO\\Programa\u00E7\u00E3o Orientada a Objetos\\TrabalhoPratico\\Projeto\\Civil Construction Management\\ViewModel\\LoginViewModel.cs",
-              "RelativeDocumentMoniker": "ViewModel\\LoginViewModel.cs",
-              "ToolTip": "C:\\Users\\ptnun\\Desktop\\2\u00BA ANO\\Programa\u00E7\u00E3o Orientada a Objetos\\TrabalhoPratico\\Projeto\\Civil Construction Management\\ViewModel\\LoginViewModel.cs",
-              "RelativeToolTip": "ViewModel\\LoginViewModel.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAuwBMAAAAzAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-16T22:16:02.502Z",
+              "Title": "CreateAccountWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\ptnun\\Desktop\\2\u00BA ANO\\Programa\u00E7\u00E3o Orientada a Objetos\\TrabalhoPratico\\Projeto\\Civil Construction Management\\Views\\CreateAccountWindow.xaml",
+              "RelativeDocumentMoniker": "Views\\CreateAccountWindow.xaml",
+              "ToolTip": "C:\\Users\\ptnun\\Desktop\\2\u00BA ANO\\Programa\u00E7\u00E3o Orientada a Objetos\\TrabalhoPratico\\Projeto\\Civil Construction Management\\Views\\CreateAccountWindow.xaml",
+              "RelativeToolTip": "Views\\CreateAccountWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-11-18T15:40:06.51Z",
               "EditorCaption": ""
             }
           ]
