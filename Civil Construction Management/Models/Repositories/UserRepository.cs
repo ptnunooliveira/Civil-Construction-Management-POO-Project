@@ -1,6 +1,6 @@
 ﻿using Civil_Construction_Management.Models.Repositories.Interfaces;
+using DLL___Project_Support;
 using System.IO;
-using System.Text.Json;
 
 namespace Civil_Construction_Management.Models.Repositories
 {
@@ -8,6 +8,8 @@ namespace Civil_Construction_Management.Models.Repositories
     {
         private readonly string _usersFile;
         private string _basePath = Path.Combine("." + Path.DirectorySeparatorChar, "Data");
+
+        private readonly VerifyRepositories x = new VerifyRepositories();
 
         public UserRepository()
         {
@@ -20,18 +22,15 @@ namespace Civil_Construction_Management.Models.Repositories
             if (!File.Exists(_usersFile))
                 File.WriteAllText(_usersFile, "[]");
         }
-
-        private List<User> LoadUsers()
-        {
-
-            string readJsonString = File.ReadAllText(_usersFile);
-            return JsonSerializer.Deserialize<List<User>>(readJsonString);
-        }
+               
 
         public User GetUserByUsername(string username)
         {
 
-            List<User> users = LoadUsers();
+            if (username == null)
+                throw new ArgumentException("Argument not valid.");
+
+            List<User> users = x.ReadJson<User>(_usersFile);
             return users.FirstOrDefault(x => x.Username == username);
         }
 
@@ -41,15 +40,7 @@ namespace Civil_Construction_Management.Models.Repositories
             if (user == default || user == null)
                 throw new ArgumentException("Argument not valid.");
 
-            var users = LoadUsers();
-            users.Add(user);
-
-            // Fazer DDL para escrever no ficheiro
-            var options = new JsonSerializerOptions { WriteIndented = true };
-            string userString = JsonSerializer.Serialize(users, options);
-            File.WriteAllText(_usersFile, userString);
-
-            return true;
-        }
+            return x.AppendJson<User>(user, _usersFile);
+        }      
     }
 }

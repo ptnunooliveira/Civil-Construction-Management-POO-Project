@@ -4,26 +4,53 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Civil_Construction_Management"
+        xmlns:vm="clr-namespace:Civil_Construction_Management.ViewModels"
+        xmlns:views="clr-namespace:Civil_Construction_Management.Views.MainViews"
         mc:Ignorable="d"
         Title="BuildSmart" Height="450" Width="800">
+
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type vm:ListingEmployeeViewModel}">
+            <views:EmployeeView/>
+        </DataTemplate>
+    </Window.Resources>
+
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="/Views/Images/MainWindowBackground.png"
-                    Stretch="UniformToFill"
-                    Opacity="0.3"/>
+                    Stretch="UniformToFill"/>
         </Grid.Background>
-       
-        <Border BorderBrush="Black"
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="170"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Grid.Column="0"
             BorderThickness="3"
-            Background="Transparent"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Center"
-            Margin="25 0 0 0">
-
-            <Grid Background="Transparent"
-              Height="400"
-              Width="130">
-
+            BorderBrush="Black"
+            Margin="10 20 10 0">
+            <Grid Background="MediumOrchid">
+                <TextBlock Text="Items"
+                    FontFamily="Impact"
+                    FontStyle="Italic"
+                    FontSize="30"
+                    Foreground="Yellow"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"/>
+            </Grid>            
+        </Border>
+                
+        <Border Grid.Row="1" Grid.Column="0"
+            BorderThickness="3"
+            BorderBrush="Black"
+            Margin="10 5 10 20">
+            <Grid Background="Transparent" Margin="0 60 0 0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
@@ -34,48 +61,95 @@
                 </Grid.RowDefinitions>
 
                 <Button Grid.Row="0"
-                    Content="Employees"
-                    FontSize="16"
-                    FontFamily="Segoe UI Light"
                     Background="Transparent"
                     BorderBrush="Transparent"
-                    Margin="0 120 0 0"/>
+                    Content="Employee"
+                    FontFamily="Segoe UI Light"
+                    FontSize="16"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Margin="0 0 0 0"
+                    Command="{Binding ShowEmployeesCommand}">                    
+                </Button>
 
                 <Button Grid.Row="1"
-                    Content="Project"
-                    FontSize="16"
-                    FontFamily="Segoe UI Light"
                     Background="Transparent"
-                    BorderBrush="Transparent"/>
+                    BorderBrush="Transparent"
+                    Content="Projects"
+                    FontFamily="Segoe UI Light"
+                    FontSize="16"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Margin="0 0 0 0">
+                </Button>
 
                 <Button Grid.Row="2"
-                    Content="Vehicles"
-                    FontSize="16"
-                    FontFamily="Segoe UI Light"
                     Background="Transparent"
-                    BorderBrush="Transparent"/>
+                    BorderBrush="Transparent"
+                    Content="Vehicles"
+                    FontFamily="Segoe UI Light"
+                    FontSize="16"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Margin="0 0 0 0">
+                </Button>
 
                 <Button Grid.Row="3"
-                    Content="Warehouses"
-                    FontSize="16"
-                    FontFamily="Segoe UI Light"
                     Background="Transparent"
-                    BorderBrush="Transparent"/>
+                    BorderBrush="Transparent"
+                    Content="Warehouses"
+                    FontFamily="Segoe UI Light"
+                    FontSize="16"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Margin="0 0 0 0">
+                </Button>
 
                 <Button Grid.Row="4"
-                    Content="Subcontractors"
-                    FontSize="16"
-                    FontFamily="Segoe UI Light"
                     Background="Transparent"
-                    BorderBrush="Transparent"/>
+                    BorderBrush="Transparent"
+                    Content="Subcontractors"
+                    FontFamily="Segoe UI Light"
+                    FontSize="16"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Margin="0 0 0 0">
+                </Button>
 
                 <Button Grid.Row="5"
-                    Content="Project's Budgets"
-                    FontSize="16"
-                    FontFamily="Segoe UI Light"
                     Background="Transparent"
-                    BorderBrush="Transparent"/>
+                    BorderBrush="Transparent"
+                    Content="Project's Budgets"
+                    FontFamily="Segoe UI Light"
+                    FontSize="16"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Margin="0 0 0 0">
+                </Button>
             </Grid>
+        </Border>
+
+        <Border Grid.Row="0" Grid.Column="1"
+            BorderThickness="3"
+            BorderBrush="Black"
+            Margin="10 20 10 0">
+            <Grid Background="MediumOrchid">
+                <TextBlock Text="Information"
+            FontFamily="Impact"
+            FontStyle="Italic"
+            FontSize="30"
+            Foreground="Yellow"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"/>
+            </Grid>
+        </Border>
+
+        <Border Grid.Row="1" Grid.Column="1"
+            BorderThickness="3"
+            BorderBrush="Black"
+            Margin="10 5 10 20">
+
+            <ContentControl Content="{Binding CurrentViewModel}"/>
         </Border>
     </Grid>
 </Window>

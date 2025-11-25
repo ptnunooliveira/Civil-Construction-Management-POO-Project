@@ -1,4 +1,4 @@
-﻿using Civil_Construction_Management.Enums;
+﻿using Civil_Construction_Management.Models.Enums;
 using System.Collections.ObjectModel;
 
 namespace Civil_Construction_Management.Models

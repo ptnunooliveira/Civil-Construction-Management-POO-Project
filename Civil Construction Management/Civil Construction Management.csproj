@@ -16,6 +16,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\DLL - Project Support\DLL - Project Support\DLL - Project Support.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="Views\Images\CreateAccountBackground.jpg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
