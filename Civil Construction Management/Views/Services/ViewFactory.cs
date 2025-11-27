@@ -13,6 +13,7 @@ namespace Civil_Construction_Management.Views.Services
                 ViewType.Login => new LoginWindow(),
                 ViewType.CreateAccount => new CreateAccountWindow(),
                 ViewType.Main => new MainWindow(),
+                ViewType.AddEmployee => new AddEmployeeWindow(),
 
                 _ => throw new NotImplementedException($"ViewFactory does not support view type {type}.")
             };

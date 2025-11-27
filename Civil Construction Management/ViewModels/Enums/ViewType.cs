@@ -5,6 +5,7 @@
 
         Login,
         Main,
-        CreateAccount
+        CreateAccount,
+        AddEmployee
     }
 }

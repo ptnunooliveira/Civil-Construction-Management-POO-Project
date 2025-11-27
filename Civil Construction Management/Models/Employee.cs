@@ -5,11 +5,8 @@ namespace Civil_Construction_Management.Models
     public class Employee
     {
 
-        private static int currentID = 1;
-
         #region Private Fields
 
-        private int _id;
         private string _name;
         private string _nif;
         private string _phoneNumber;
@@ -23,8 +20,6 @@ namespace Civil_Construction_Management.Models
 
 
         #region Public Properties
-
-        public int ID { get => _id; }
 
         public string Name
         {
@@ -163,8 +158,8 @@ namespace Civil_Construction_Management.Models
         #region Constructor
 
         public Employee(string name, string nif, string phoneNumber, string email, Roles role, double salaryHour, double workHours, DateTime startDate)
-
         {
+
             Name = name;
             NIF = nif;
             PhoneNumber = phoneNumber;
@@ -173,8 +168,6 @@ namespace Civil_Construction_Management.Models
             SalaryHour = salaryHour;
             WorkHours = workHours;
             StartDate = startDate;
-
-            _id = currentID++;
         }
 
         #endregion

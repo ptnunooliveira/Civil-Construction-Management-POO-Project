@@ -149,7 +149,23 @@
             BorderBrush="Black"
             Margin="10 5 10 20">
 
-            <ContentControl Content="{Binding CurrentViewModel}"/>
+            <Grid>
+                
+                <ContentControl Content="{Binding CurrentViewModel}"/>
+
+                <Button Content="Add"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Bottom"
+                        Margin="0 0 10 10"
+                        Width="50"
+                        Height="25"
+                        Background="Yellow"
+                        BorderThickness="2"
+                        FontFamily="Segoe UI Light"                        
+                        Command="{Binding CurrentAddCommand}"/>
+
+            </Grid>
+            
         </Border>
     </Grid>
 </Window>

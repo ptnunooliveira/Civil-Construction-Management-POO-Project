@@ -25,6 +25,7 @@ namespace Civil_Construction_Management
                 .AddSingleton<LoginViewModel>()
                 .AddSingleton<CreateAccountViewModel>()
                 .AddSingleton<MainWindowViewModel>()
+                .AddSingleton<ListingEmployeeViewModel>()
                 .AddSingleton<IUserRepository, UserRepository>()
                 .AddSingleton<IAuthenticationService, AuthenticationService>()
                 .AddSingleton<IEmployeeRepository, EmployeeRepository>()

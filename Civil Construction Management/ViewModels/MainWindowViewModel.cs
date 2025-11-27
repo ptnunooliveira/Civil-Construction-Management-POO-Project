@@ -6,7 +6,8 @@ namespace Civil_Construction_Management.ViewModels
     public class MainWindowViewModel : BaseViewModel
     {
 
-        private BaseViewModel _currentViewModel;
+        private IViewFactory _viewFactory;
+        private BaseViewModel _currentViewModel;        
         private IManagerEmployee _managerEmployee;
 
         public BaseViewModel CurrentViewModel
@@ -18,26 +19,41 @@ namespace Civil_Construction_Management.ViewModels
                 {
                     _currentViewModel = value;
                     OnPropertyChanged(nameof(CurrentViewModel));
+
+                    UpdateAddCommand();
                 }
             }
         }
                
         public ICommand ShowEmployeesCommand { get; }
+        public ICommand CurrentAddCommand { get; set; }
 
-        public MainWindowViewModel(IManagerEmployee managerEmployee)
+        public MainWindowViewModel(IManagerEmployee managerEmployee, IViewFactory viewFactory)
         {
 
             _currentViewModel = CurrentViewModel;
             _managerEmployee = managerEmployee;
+            _viewFactory = viewFactory;
 
             ShowEmployeesCommand = new ViewModelCommand(ExecuteShowEmployeesCommand);
+            UpdateAddCommand();
         }
 
 
         private void ExecuteShowEmployeesCommand(object parameter)
         {
 
-            CurrentViewModel = new ListingEmployeeViewModel(_managerEmployee);
+            CurrentViewModel = new ListingEmployeeViewModel(_managerEmployee, _viewFactory);
+        }
+
+        private void UpdateAddCommand()
+        {
+            if(CurrentViewModel is ListingEmployeeViewModel levm)
+            {
+
+                CurrentAddCommand = new ViewModelCommand(levm.ExecuteAddEmployeeCommand);
+                OnPropertyChanged(nameof(CurrentAddCommand));
+            }
         }
     }
 }
