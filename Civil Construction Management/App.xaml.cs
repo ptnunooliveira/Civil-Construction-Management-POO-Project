@@ -24,6 +24,7 @@ namespace Civil_Construction_Management
             ServiceProvider = new ServiceCollection()
                 .AddSingleton<LoginViewModel>()
                 .AddSingleton<CreateAccountViewModel>()
+                .AddSingleton<MainWindowViewModel>()
                 .AddSingleton<IUserRepository, UserRepository>()
                 .AddSingleton<IAuthenticationService, AuthenticationService>()
                 .AddSingleton<IEmployeeRepository, EmployeeRepository>()

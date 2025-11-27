@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using Civil_Construction_Management.ViewModels.Interfaces;
+using System.Windows.Input;
 
 namespace Civil_Construction_Management.ViewModels
 {
@@ -6,6 +7,7 @@ namespace Civil_Construction_Management.ViewModels
     {
 
         private BaseViewModel _currentViewModel;
+        private IManagerEmployee _managerEmployee;
 
         public BaseViewModel CurrentViewModel
         {
@@ -22,10 +24,12 @@ namespace Civil_Construction_Management.ViewModels
                
         public ICommand ShowEmployeesCommand { get; }
 
-        public MainWindowViewModel()
+        public MainWindowViewModel(IManagerEmployee managerEmployee)
         {
 
             _currentViewModel = CurrentViewModel;
+            _managerEmployee = managerEmployee;
+
             ShowEmployeesCommand = new ViewModelCommand(ExecuteShowEmployeesCommand);
         }
 
@@ -33,7 +37,7 @@ namespace Civil_Construction_Management.ViewModels
         private void ExecuteShowEmployeesCommand(object parameter)
         {
 
-                      
+            CurrentViewModel = new ListingEmployeeViewModel(_managerEmployee);
         }
     }
 }

@@ -7,13 +7,11 @@ namespace Civil_Construction_Management.Views.MainViews
     
     public partial class EmployeeView : UserControl
     {
-        private readonly ListingEmployeeViewModel _listingEmployee;
-             
+                     
         public EmployeeView()
         {
-            
-            InitializeComponent();                               
-            DataContext = _listingEmployee;
+
+            InitializeComponent();
         }
     }
 }
