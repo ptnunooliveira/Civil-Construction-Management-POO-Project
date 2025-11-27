@@ -1,6 +1,5 @@
-﻿using Civil_Construction_Management.Models.Repositories;
-using Civil_Construction_Management.ViewModels;
-using Civil_Construction_Management.ViewModels.Services;
+﻿using Civil_Construction_Management.ViewModels;
+using Microsoft.Extensions.DependencyInjection;
 using System.Windows;
 
 namespace Civil_Construction_Management.Views
@@ -15,10 +14,8 @@ namespace Civil_Construction_Management.Views
         {
 
             InitializeComponent();
-            UserRepository userRepository = new UserRepository();
-            AuthenticationService authService = new AuthenticationService(userRepository);
 
-            _createAccount = new CreateAccountViewModel(authService);
+            _createAccount = App.ServiceProvider.GetRequiredService<CreateAccountViewModel>();
             _createAccount.HideWindowAction = Hide;
             DataContext = _createAccount;
         }

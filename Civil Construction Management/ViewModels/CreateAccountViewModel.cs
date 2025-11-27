@@ -1,6 +1,6 @@
 ﻿using Civil_Construction_Management.Models;
+using Civil_Construction_Management.ViewModels.Enums;
 using Civil_Construction_Management.ViewModels.Interfaces;
-using Civil_Construction_Management.Views;
 using System.Windows;
 using System.Windows.Input;
 
@@ -10,8 +10,10 @@ namespace Civil_Construction_Management.ViewModels
     {
 
         #region Private Fields
-
+               
         private IAuthenticationService _authenticationService;
+        private IMessageService _messageService;
+        private IViewFactory _viewFactory;
         private string _username;
         private string _password;
         private string _passwordConfirmation;
@@ -67,9 +69,11 @@ namespace Civil_Construction_Management.ViewModels
 
         #region Constructor
 
-        public CreateAccountViewModel(IAuthenticationService authenticationService)
+        public CreateAccountViewModel(IAuthenticationService authenticationService, IMessageService messageService, IViewFactory viewFactory)
         {
             _authenticationService = authenticationService;
+            _messageService = messageService;
+            _viewFactory = viewFactory;
 
             LoginPageCommand = new ViewModelCommand(ExecuteLoginPageCommand);
             CreateAccountCommand = new ViewModelCommand(ExecuteCreateAccountCommand);
@@ -80,10 +84,7 @@ namespace Civil_Construction_Management.ViewModels
         private void ExecuteLoginPageCommand(object parameter)
         {
 
-            LoginWindow loginWindow = new LoginWindow()
-            {
-                WindowStartupLocation = WindowStartupLocation.CenterScreen
-            };
+            Window loginWindow = _viewFactory.CreateView(ViewType.Login);
 
             HideWindowAction?.Invoke();
             loginWindow.Show();
@@ -94,13 +95,13 @@ namespace Civil_Construction_Management.ViewModels
 
             if (_authenticationService.ValidUsername(Username))
             {
-                MessageBox.Show("Username is not valid.");
+                _messageService.ShowMessage("Username is not valid.");
                 return;
             }
 
             if (_password != _passwordConfirmation)
             {
-                MessageBox.Show("The passwords must be the same.");
+                _messageService.ShowMessage("The passwords must be the same.");
                 return;
             }
 
@@ -110,19 +111,16 @@ namespace Civil_Construction_Management.ViewModels
                 Password = Password
             };
 
-
-            MessageBox.Show("Account created successfully.");
-
+            
             if (!_authenticationService.CreateUser(newUser))
             {
-                MessageBox.Show("It was not possible to create a new user. Try again.");
+                _messageService.ShowMessage("It was not possible to create a new user. Try again.");
                 return;
             }
 
-            LoginWindow loginWindow = new LoginWindow()
-            {
-                WindowStartupLocation = WindowStartupLocation.CenterScreen
-            };
+            _messageService.ShowMessage("Account created successfully.");
+
+            Window loginWindow = _viewFactory.CreateView(ViewType.Login);
 
             HideWindowAction?.Invoke();
             loginWindow.Show();          

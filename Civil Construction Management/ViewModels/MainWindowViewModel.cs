@@ -24,7 +24,8 @@ namespace Civil_Construction_Management.ViewModels
 
         public MainWindowViewModel()
         {
-                       
+
+            _currentViewModel = CurrentViewModel;
             ShowEmployeesCommand = new ViewModelCommand(ExecuteShowEmployeesCommand);
         }
 
