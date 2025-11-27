@@ -37,9 +37,8 @@
                     <GridViewColumn Header="Phone" DisplayMemberBinding="{Binding PhoneNumber}" Width="Auto"/>
                     <GridViewColumn Header="Email" DisplayMemberBinding="{Binding Email}" Width="Auto"/>
                     <GridViewColumn Header="Role" DisplayMemberBinding="{Binding Role}" Width="Auto"/>
-                    <GridViewColumn Header="Salary/Hour" DisplayMemberBinding="{Binding SalaryHour}" Width="Auto"/>
-                    <GridViewColumn Header="Work Hours" DisplayMemberBinding="{Binding WorkHours}" Width="Auto"/>
-                    <GridViewColumn Header="Start Date" DisplayMemberBinding="{Binding StartDate}" Width="Auto"/>
+                    <GridViewColumn Header="Salary" DisplayMemberBinding="{Binding SalaryHour}" Width="Auto"/>
+                    <GridViewColumn Header="  Start Date" DisplayMemberBinding="{Binding StartDate}" Width="Auto"/>
                 </GridView>
             </ListView.View>
         </ListView>

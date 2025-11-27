@@ -19,6 +19,8 @@ namespace Civil_Construction_Management.ViewModels
             _employees = new ObservableCollection<EmployeeViewModel>();
             _managerEmployee = managerEmployee;
             _viewFactory = viewFactory;
+
+            LoadEmployees();
         }
 
         public void LoadEmployees()
@@ -30,7 +32,7 @@ namespace Civil_Construction_Management.ViewModels
                 _employees.Add(new EmployeeViewModel(e, _managerEmployee));
         }
 
-        public void ExecuteAddEmployeeCommand(object parameter)
+        public void ExecuteAddEmployeeWindowCommand(object parameter)
         {
 
             Window addEmployeeWindow = _viewFactory.CreateView(ViewType.AddEmployee);

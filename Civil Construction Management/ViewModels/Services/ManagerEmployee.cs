@@ -29,12 +29,17 @@ namespace Civil_Construction_Management.ViewModels.Services
 
         public bool CreateEmployee(Employee e)
         {
-
+                    
             if (e == null)
                 throw new ArgumentException("Invalid argument.");
 
-            if (EmployeeExists(e))
-                return false;
+            if(string.IsNullOrEmpty(e.Name)) return false;
+            if(string.IsNullOrEmpty(e.NIF) || e.NIF.Length != 9) return false;
+            if(string.IsNullOrEmpty(e.Email)) return false;
+            if(string.IsNullOrEmpty(e.PhoneNumber) || e.PhoneNumber.Length != 9) return false;
+            if(string.IsNullOrEmpty(e.Role)) return false;
+            if(e.SalaryHour < 0) return false;            
+            if (EmployeeExists(e)) return false;
 
             return _employeeRepository.AddEmployee(e);
         }

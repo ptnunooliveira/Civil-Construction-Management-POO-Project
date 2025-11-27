@@ -5,8 +5,6 @@ using Civil_Construction_Management.ViewModels.Interfaces;
 using Civil_Construction_Management.ViewModels.Services;
 using Civil_Construction_Management.Views.Services;
 using Microsoft.Extensions.DependencyInjection;
-using System.Configuration;
-using System.Data;
 using System.Windows;
 
 namespace Civil_Construction_Management
@@ -26,6 +24,7 @@ namespace Civil_Construction_Management
                 .AddSingleton<CreateAccountViewModel>()
                 .AddSingleton<MainWindowViewModel>()
                 .AddSingleton<ListingEmployeeViewModel>()
+                .AddSingleton<EmployeeViewModel>()
                 .AddSingleton<IUserRepository, UserRepository>()
                 .AddSingleton<IAuthenticationService, AuthenticationService>()
                 .AddSingleton<IEmployeeRepository, EmployeeRepository>()

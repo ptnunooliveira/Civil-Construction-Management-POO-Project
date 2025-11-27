@@ -51,7 +51,7 @@ namespace Civil_Construction_Management.ViewModels
             if(CurrentViewModel is ListingEmployeeViewModel levm)
             {
 
-                CurrentAddCommand = new ViewModelCommand(levm.ExecuteAddEmployeeCommand);
+                CurrentAddCommand = new ViewModelCommand(levm.ExecuteAddEmployeeWindowCommand);
                 OnPropertyChanged(nameof(CurrentAddCommand));
             }
         }

@@ -1,14 +1,21 @@
 ﻿using Civil_Construction_Management.Models;
-using Civil_Construction_Management.Models.Enums;
 using Civil_Construction_Management.ViewModels.Interfaces;
+using System.Windows.Input;
 
 namespace Civil_Construction_Management.ViewModels
 {
     public class EmployeeViewModel : BaseViewModel
     {
 
+        #region Private Fields
+
         private Employee _employee;
         private readonly IManagerEmployee _managerEmployee;
+
+        #endregion
+
+
+        #region Public Properties
 
         public string Name
         {
@@ -67,13 +74,10 @@ namespace Civil_Construction_Management.ViewModels
             get => _employee.Role.ToString();
             set
             {
-                if(_employee.Role.ToString() != value)
-                {
-                    if (Enum.TryParse<Roles>(value, true, out Roles res))
-                    {
-                        _employee.Role = res;
-                        OnPropertyChanged(nameof(Role));
-                    }
+                if(_employee.Role != value)
+                {   
+                    _employee.Role = value;
+                    OnPropertyChanged(nameof(Role));                 
                 }
             }
         }
@@ -91,19 +95,6 @@ namespace Civil_Construction_Management.ViewModels
             }
         }
 
-        public double WorkHours
-        {
-            get => _employee.WorkHours;
-            set
-            {
-                if(_employee.WorkHours != value)
-                {
-                    _employee.WorkHours = value;
-                    OnPropertyChanged(nameof(WorkHours));
-                }
-            }
-        }
-
         public DateTime StartDate
         {
             get => _employee.StartDate;
@@ -117,19 +108,58 @@ namespace Civil_Construction_Management.ViewModels
             }
         }
 
+        public Action? HideWindowAction { get; set; }
+        public ICommand AddEmployeeCommand { get; }
 
+        #endregion
+
+
+        #region Constructors
+
+        public EmployeeViewModel(IManagerEmployee managerEmployee)
+        {
+
+            _employee = new Employee("Name", "NIF", "Contact", "Email", "Role", 0, DateTime.Now);
+
+            _managerEmployee = managerEmployee;
+            AddEmployeeCommand = new ViewModelCommand(ExecuteAddEmployeeCommand);            
+        }
         public EmployeeViewModel(Employee employee, IManagerEmployee managerEmployee)
         {
 
             _employee = employee;
             _managerEmployee = managerEmployee;
+
+            AddEmployeeCommand = new ViewModelCommand(ExecuteAddEmployeeCommand);
         }
+
+        #endregion
+
 
         #region Methods
 
+        public void ExecuteAddEmployeeCommand(object parameter)
+        {
+        
+            Employee e = new Employee(
+                Name,
+                NIF,
+                PhoneNumber,
+                Email,
+                Role,
+                SalaryHour,
+                StartDate.Date);
+
+            bool success = CreateEmployee(e);
+            if (!success)
+                throw new ArgumentException("It wasn't possible to create the employee.");
+
+            HideWindowAction?.Invoke();
+        }
+
         public bool CreateEmployee(Employee e)
         {
-
+            
             if (e == null)
                 throw new ArgumentException("Invalid argument.");
 
