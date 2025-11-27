@@ -1,4 +1,4 @@
-﻿using Civil_Construction_Management.ViewModel.Interfaces;
+﻿using Civil_Construction_Management.ViewModels.Interfaces;
 using System.Collections.ObjectModel;
 
 namespace Civil_Construction_Management.ViewModels

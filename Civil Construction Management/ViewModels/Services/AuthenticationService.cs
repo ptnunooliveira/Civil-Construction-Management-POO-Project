@@ -1,8 +1,8 @@
 ﻿using Civil_Construction_Management.Models;
 using Civil_Construction_Management.Models.Repositories.Interfaces;
-using Civil_Construction_Management.ViewModel.Interfaces;
+using Civil_Construction_Management.ViewModels.Interfaces;
 
-namespace Civil_Construction_Management.ViewModel.Services
+namespace Civil_Construction_Management.ViewModels.Services
 {
     public class AuthenticationService : IAuthenticationService
     {

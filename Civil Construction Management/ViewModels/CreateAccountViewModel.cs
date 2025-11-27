@@ -1,5 +1,5 @@
 ﻿using Civil_Construction_Management.Models;
-using Civil_Construction_Management.ViewModel.Interfaces;
+using Civil_Construction_Management.ViewModels.Interfaces;
 using Civil_Construction_Management.Views;
 using System.Windows;
 using System.Windows.Input;

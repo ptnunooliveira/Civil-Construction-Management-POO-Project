@@ -1,6 +1,6 @@
 ﻿using Civil_Construction_Management.Models;
 
-namespace Civil_Construction_Management.ViewModel.Interfaces
+namespace Civil_Construction_Management.ViewModels.Interfaces
 {
     public interface IManagerEmployee
     {

@@ -1,6 +1,6 @@
 ﻿using Civil_Construction_Management.Models;
 using Civil_Construction_Management.Models.Repositories.Interfaces;
-using Civil_Construction_Management.ViewModel.Interfaces;
+using Civil_Construction_Management.ViewModels.Interfaces;
 
 namespace Civil_Construction_Management.ViewModels.Services
 {
