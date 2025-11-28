@@ -1,4 +1,5 @@
-﻿using Civil_Construction_Management.ViewModels.Enums;
+﻿using Civil_Construction_Management.Models;
+using Civil_Construction_Management.ViewModels.Enums;
 using Civil_Construction_Management.ViewModels.Interfaces;
 using System.Collections.ObjectModel;
 using System.Windows;
@@ -10,13 +11,13 @@ namespace Civil_Construction_Management.ViewModels
 
         private IViewFactory _viewFactory;
         private readonly IManagerEmployee _managerEmployee;
-        private readonly ObservableCollection<EmployeeViewModel> _employees;
-        public ObservableCollection<EmployeeViewModel> Employees => _employees;
+        private readonly ObservableCollection<Employee> _employees;
+        public ObservableCollection<Employee> Employees => _employees;
 
         public ListingEmployeeViewModel(IManagerEmployee managerEmployee, IViewFactory viewFactory)
         {
 
-            _employees = new ObservableCollection<EmployeeViewModel>();
+            _employees = new ObservableCollection<Employee>();
             _managerEmployee = managerEmployee;
             _viewFactory = viewFactory;
 
@@ -27,9 +28,8 @@ namespace Civil_Construction_Management.ViewModels
         {
 
             var employeeList = _managerEmployee.GetAllEmployees();
-
             foreach (var e in employeeList)
-                _employees.Add(new EmployeeViewModel(e, _managerEmployee));
+                _employees.Add(e);
         }
 
         public void ExecuteAddEmployeeWindowCommand(object parameter)
