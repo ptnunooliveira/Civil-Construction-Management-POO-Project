@@ -7,6 +7,7 @@ namespace Civil_Construction_Management.ViewModels.Interfaces
         public bool CreateEmployee(Employee e);
         public bool EmployeeExists(Employee e);
         public bool DeleteEmployee(Employee e);
+        public bool UpdateEmployee(Employee updatedEmployee);
         public List<Employee> GetAllEmployees();
     }
 }

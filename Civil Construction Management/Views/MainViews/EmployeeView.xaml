@@ -6,14 +6,14 @@
 
     <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 
-        <ListView Background="Transparent"
+        <ListView x:Name="EmployeeListView"
+                  Background="Transparent"
                   ItemsSource="{Binding Employees}"
+                  SelectedItem="{Binding SelectedEmployee, Mode=TwoWay}"
                   HorizontalAlignment="Stretch"
                   VerticalAlignment="Stretch">
 
             <ListView.Resources>
-
-                <!-- Remove o estilo default do header -->
                 <Style TargetType="GridViewColumnHeader">
                     <Setter Property="Background" Value="Transparent"/>
                     <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
@@ -32,60 +32,21 @@
                         </Setter.Value>
                     </Setter>
                 </Style>
-
             </ListView.Resources>
 
             <ListView.View>
                 <GridView>
-
+                    
                     <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="Auto"/>
                     <GridViewColumn Header="NIF" DisplayMemberBinding="{Binding NIF}" Width="Auto"/>
                     <GridViewColumn Header="Phone" DisplayMemberBinding="{Binding PhoneNumber}" Width="Auto"/>
                     <GridViewColumn Header="Email" DisplayMemberBinding="{Binding Email}" Width="Auto"/>
                     <GridViewColumn Header="Role" DisplayMemberBinding="{Binding Role}" Width="Auto"/>
                     <GridViewColumn Header="Salary" DisplayMemberBinding="{Binding SalaryHour}" Width="Auto"/>
-                    <GridViewColumn Header="  Start Date" DisplayMemberBinding="{Binding StartDate}" Width="Auto"/>
-
+                    <GridViewColumn Header=" Start Date" DisplayMemberBinding="{Binding StartDate}" Width="Auto"/>
                     
-                    <GridViewColumn Width="40">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-
-                                <Button Content="⋮"
-                                        FontSize="16"
-                                        FontWeight="Bold"
-                                        Background="Transparent"
-                                        BorderThickness="0"
-                                        Padding="0"
-                                        Margin="5 0"
-                                        Cursor="Hand">
-
-                                    <Button.ContextMenu>
-                                        <ContextMenu>
-
-                                            <MenuItem Header="Edit"
-                                                      Command="{Binding DataContext.EditEmployeeCommand,
-                                                                RelativeSource={RelativeSource AncestorType=ListView}}"
-                                                      CommandParameter="{Binding}" />
-
-                                            <MenuItem Header="Delete"
-                                                      Command="{Binding DataContext.DeleteEmployeeCommand,
-                                                                RelativeSource={RelativeSource AncestorType=ListView}}"
-                                                      CommandParameter="{Binding}" />
-
-                                        </ContextMenu>
-                                    </Button.ContextMenu>
-
-                                </Button>
-
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-
                 </GridView>
             </ListView.View>
-
         </ListView>
-
     </Grid>
 </UserControl>

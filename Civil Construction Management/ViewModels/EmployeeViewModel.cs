@@ -9,9 +9,10 @@ namespace Civil_Construction_Management.ViewModels
 
         #region Private Fields
 
+        private bool _editMode;
         private Employee _employee;
         private readonly IManagerEmployee _managerEmployee;
-
+        
         #endregion
 
 
@@ -108,8 +109,22 @@ namespace Civil_Construction_Management.ViewModels
             }
         }
 
+        public bool EditMode
+        {
+            get => _editMode;
+            set
+            {
+                if(_editMode != value)
+                {
+                    _editMode = value;
+                    OnPropertyChanged(nameof(EditMode));
+                }
+            }
+        }
+
         public Action? HideWindowAction { get; set; }
-        public ICommand AddEmployeeCommand { get; }
+        public ICommand SaveEmployeeCommand { get; }
+        public ICommand DeleteEmployeeCommand { get; }
 
         #endregion
 
@@ -120,17 +135,19 @@ namespace Civil_Construction_Management.ViewModels
         {
 
             _employee = new Employee("Name", "NIF", "Contact", "Email", "Role", 0, DateTime.Now);
-
+            _editMode = false;
+            
             _managerEmployee = managerEmployee;
-            AddEmployeeCommand = new ViewModelCommand(ExecuteAddEmployeeCommand);            
+            SaveEmployeeCommand = new ViewModelCommand(ExecuteSaveEmployeeCommand);            
         }
         public EmployeeViewModel(Employee employee, IManagerEmployee managerEmployee)
         {
 
             _employee = employee;
+            _editMode = true;
+                        
             _managerEmployee = managerEmployee;
-
-            AddEmployeeCommand = new ViewModelCommand(ExecuteAddEmployeeCommand);
+            SaveEmployeeCommand = new ViewModelCommand(ExecuteSaveEmployeeCommand);
         }
 
         #endregion
@@ -138,23 +155,34 @@ namespace Civil_Construction_Management.ViewModels
 
         #region Methods
 
-        public void ExecuteAddEmployeeCommand(object parameter)
+        public void ExecuteSaveEmployeeCommand(object parameter)
         {
-        
-            Employee e = new Employee(
-                Name,
-                NIF,
-                PhoneNumber,
-                Email,
-                Role,
-                SalaryHour,
-                StartDate.Date);
 
-            bool success = CreateEmployee(e);
-            if (!success)
-                throw new ArgumentException("It wasn't possible to create the employee.");
+            if (_editMode == false)
+            {
 
-            HideWindowAction?.Invoke();
+                Employee e = new Employee(
+                    Name,
+                    NIF,
+                    PhoneNumber,
+                    Email,
+                    Role,
+                    SalaryHour,
+                    StartDate.Date);
+
+                bool success = CreateEmployee(e);
+                if (!success)
+                    throw new ArgumentException("It wasn't possible to create the employee.");
+            }
+
+            else if(_editMode == true)
+            {
+                var success = _managerEmployee.UpdateEmployee(_employee);
+                if (!success)
+                    return;
+            }
+
+            HideWindowAction?.Invoke();             
         }
 
         public bool CreateEmployee(Employee e)
@@ -166,15 +194,17 @@ namespace Civil_Construction_Management.ViewModels
             return _managerEmployee.CreateEmployee(e);
         }
 
-        public bool DeleteEmployee(Employee e)
+        /*public bool DeleteEmployee(Employee e)
         {
 
             if (e == null)
                 throw new ArgumentException("Invalid argument.");
 
             return _managerEmployee.DeleteEmployee(e);
-        }
+        }*/
 
+
+                
         #endregion
     }
 }

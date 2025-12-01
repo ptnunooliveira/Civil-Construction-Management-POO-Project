@@ -44,6 +44,27 @@ namespace Civil_Construction_Management.ViewModels.Services
             return _employeeRepository.AddEmployee(e);
         }
 
+        public bool UpdateEmployee(Employee updatedEmployee)
+        {
+
+            if (updatedEmployee == null)
+                return false;
+
+            var oldEmployee = _employeeRepository.GetEmployeeByNIF(updatedEmployee.NIF);
+            if (oldEmployee == null)
+                return false;
+
+            var success = _employeeRepository.RemoveEmployee(oldEmployee);
+            if (!success)
+                return false;
+
+            success = _employeeRepository.AddEmployee(updatedEmployee);
+            if (!success)
+                return false;
+
+            return true;
+        }
+
         public bool DeleteEmployee(Employee e)
         {
 

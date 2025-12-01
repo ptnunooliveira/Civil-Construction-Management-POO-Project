@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Civil_Construction_Management.Views"
         mc:Ignorable="d"
-        Title="New Employee" Height="500" Width="400">
+        Title="Employee" Height="500" Width="400">
     <Grid>
 
 
@@ -223,12 +223,12 @@
               Width="60">
 
             <Button Background="BlanchedAlmond"
-                    Content="Add"
+                    Content="Save"
                     FontFamily="Segoe UI Light"
                     Foreground="DarkOrange"
                     BorderBrush="Black"                    
                     BorderThickness="1.5"
-                    Command="{Binding AddEmployeeCommand}">                    
+                    Command="{Binding SaveEmployeeCommand}">                    
             </Button>
         </Grid>
     </Grid>
