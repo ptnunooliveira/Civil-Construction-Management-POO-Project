@@ -1,116 +1,48 @@
-﻿using Civil_Construction_Management.Models.Enums;
-using System.Collections.ObjectModel;
-
-namespace Civil_Construction_Management.Models
+﻿namespace Civil_Construction_Management.Models
 {
     public class Project
     {
-        private static int _currentID = 1;
 
         #region Private Fields
 
-        private int _id;
         private string _clientName;
         private string _address;
-        private Status _status;
-        private Budget _budget;
-        private ObservableCollection<Material> _materials;
-        private ObservableCollection<Service> _services;
-        private ObservableCollection<Employee> _employees;
+        private string _status;
+        private IEnumerable<Material> _materials;
+        private IEnumerable<Service> _services;
+        private IEnumerable<Employee> _employees;
 
         #endregion
 
 
         #region Public Properties
 
-        public int ID { get => _id; }
+        public string ClientName { get; set; }
 
-        public string ClientName
-        {
-            get => _clientName;
-            set
-            {
-                if (string.IsNullOrEmpty(value))
-                    throw new ArgumentException("Client Name can't be empty or null.");
-                if (value.Length > 30)
-                    throw new ArgumentException("Client Name must be lower than 30 characters.");
+        public string Address { get; set; }
 
-                _clientName = value;
-            }
-        }
+        public string Status { get; set; }
+        
 
-        public string Address
-        {
-            get => _address;
-            set
-            {
-                if (string.IsNullOrEmpty(value))
-                    throw new ArgumentException("Address can't be empty or null.");
-                if (value.Length > 50)
-                    throw new ArgumentException("Address must be lower than 50 characters.");
-
-                _address = value;
-            }
-        }
-
-        public Status Status
-        {
-            get => _status;
-            set
-            {
-                if (value == default)
-                {
-                    throw new ArgumentException("Status can't be empty.");
-                }
-
-                if (!Enum.IsDefined<Status>(value))
-                    throw new ArgumentException($"{value} is not a valid status.");
-
-                _status = value;
-            }
-        }
-
-        public Budget Budget
-        {
-            get => _budget;
-            set
-            {
-                if (value == default)
-                    throw new ArgumentException("Budget can't be empty.");
-
-                _budget = value;
-            }
-        }
-
-        public ObservableCollection<Material> Materials => _materials;
-        public ObservableCollection<Service> Services => _services;
-        public ObservableCollection<Employee> Employees => _employees;
+        public IEnumerable<Material> Materials => _materials;
+        public IEnumerable<Service> Services => _services;
+        public IEnumerable<Employee> Employees => _employees;
 
         #endregion
 
 
         #region Constructor
 
-        public Project(string clientName, string address, Status status, Budget budget)
+        public Project(string clientName, string address, string status)
         {
             ClientName = clientName;
             Address = address;
             Status = status;
-            Budget = budget;
 
-            _materials = new ObservableCollection<Material>();
-            _services = new ObservableCollection<Service>();
-            _employees = new ObservableCollection<Employee>();
-
-            _id = _currentID++;
+            _materials = new List<Material>();
+            _services = new List<Service>();
+            _employees = new List<Employee>();
         }
-
-        #endregion
-
-
-        #region Methods
-
-
 
         #endregion
     }

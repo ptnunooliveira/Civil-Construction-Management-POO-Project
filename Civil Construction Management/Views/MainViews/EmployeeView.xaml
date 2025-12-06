@@ -43,7 +43,7 @@
                     <GridViewColumn Header="Email" DisplayMemberBinding="{Binding Email}" Width="Auto"/>
                     <GridViewColumn Header="Role" DisplayMemberBinding="{Binding Role}" Width="Auto"/>
                     <GridViewColumn Header="Salary" DisplayMemberBinding="{Binding SalaryHour}" Width="Auto"/>
-                    <GridViewColumn Header=" Start Date" DisplayMemberBinding="{Binding StartDate}" Width="Auto"/>
+                    <GridViewColumn Header=" Start Date" DisplayMemberBinding="{Binding StartDate, StringFormat={}{0:dd/MM/yyyy}}" Width="Auto"/>
                     
                 </GridView>
             </ListView.View>

@@ -6,6 +6,7 @@
         Login,
         Main,
         CreateAccount,
-        AddEmployee
+        AddEmployee,
+        AddProject
     }
 }

@@ -13,6 +13,7 @@ namespace Civil_Construction_Management.ViewModels
 
         private Employee _selectedEmployee;
         private IViewFactory _viewFactory;
+        private IMessageService _messageService;
         private readonly IManagerEmployee _managerEmployee;
         private readonly ObservableCollection<Employee> _employees;
 
@@ -40,12 +41,13 @@ namespace Civil_Construction_Management.ViewModels
 
 
         #region Constructor
-        public ListingEmployeeViewModel(IManagerEmployee managerEmployee, IViewFactory viewFactory)
+        public ListingEmployeeViewModel(IManagerEmployee managerEmployee, IViewFactory viewFactory, IMessageService messageService)
         {
 
             _employees = new ObservableCollection<Employee>();
             _managerEmployee = managerEmployee;
             _viewFactory = viewFactory;
+            _messageService = messageService; 
 
             LoadEmployees();
         }
@@ -87,11 +89,30 @@ namespace Civil_Construction_Management.ViewModels
         {
 
             if (parameter is not Employee e)
+            {
+                _messageService.ShowMessage("Employee not selected.");
                 return;
+            }
 
-            bool success = _managerEmployee.DeleteEmployee(e);
-            if (success)
-                _employees.Remove(e);
+            MessageBoxResult confirmation = MessageBox.Show($"Are you sure you want to delete {e.Name}?",
+                "Confirm elimination?",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Warning);
+
+            if (confirmation == MessageBoxResult.Yes)
+            {
+
+                bool success = _managerEmployee.DeleteEmployee(e);
+                if (success)
+                {
+                    _employees.Remove(e);
+                    _messageService.ShowMessage("Employee removed successfully.");
+                }
+                else
+                    _messageService.ShowMessage("Not possible.");
+            }
+            else
+                return;
         }
 
         #endregion

@@ -25,12 +25,16 @@ namespace Civil_Construction_Management
                 .AddSingleton<MainWindowViewModel>()
                 .AddSingleton<ListingEmployeeViewModel>()
                 .AddSingleton<EmployeeViewModel>()
+                .AddSingleton<ListingProjectViewModel>()
+                .AddSingleton<ProjectViewModel>()
                 .AddSingleton<IUserRepository, UserRepository>()
                 .AddSingleton<IAuthenticationService, AuthenticationService>()
                 .AddSingleton<IEmployeeRepository, EmployeeRepository>()
                 .AddSingleton<IManagerEmployee, ManagerEmployee>()
                 .AddSingleton<IMessageService, MessageService>()
                 .AddSingleton<IViewFactory, ViewFactory>()
+                .AddSingleton<IManagerProject, ManagerProject>()
+                .AddSingleton<IProjectRepository, ProjectRepository>()
                 .BuildServiceProvider();
         }
 

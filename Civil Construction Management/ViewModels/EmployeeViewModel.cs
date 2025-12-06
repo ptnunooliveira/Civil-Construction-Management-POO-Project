@@ -124,7 +124,6 @@ namespace Civil_Construction_Management.ViewModels
 
         public Action? HideWindowAction { get; set; }
         public ICommand SaveEmployeeCommand { get; }
-        public ICommand DeleteEmployeeCommand { get; }
 
         #endregion
 
@@ -193,17 +192,6 @@ namespace Civil_Construction_Management.ViewModels
 
             return _managerEmployee.CreateEmployee(e);
         }
-
-        /*public bool DeleteEmployee(Employee e)
-        {
-
-            if (e == null)
-                throw new ArgumentException("Invalid argument.");
-
-            return _managerEmployee.DeleteEmployee(e);
-        }*/
-
-
                 
         #endregion
     }
