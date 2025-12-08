@@ -24,14 +24,14 @@ namespace Civil_Construction_Management.Models.Repositories
                 File.WriteAllText(_employeesFile, "[]");                        
         }
 
-        public Employee GetEmployeeByNIF(string nif)
+        public Employee GetEmployeeByID(int id)
         {
 
-            if (nif == null || nif.Length != 9)
-                throw new ArgumentException("Invalid NIF.");
+            //if ()
+                //throw new ArgumentException("Invalid ID");
                         
             List<Employee> Employee = x.ReadJson<Employee>(_employeesFile);                        
-            return Employee.FirstOrDefault(e => e.NIF == nif);
+            return Employee.FirstOrDefault(e => e.ID == id);
         }
 
         public bool AddEmployee(Employee e)
@@ -39,8 +39,15 @@ namespace Civil_Construction_Management.Models.Repositories
 
             if (e == null)
                 throw new ArgumentException("Invalid employee.");
+
+            var emp = x.ReadJson<Employee>(_employeesFile);
+
+            int newID = emp.Count + 1;
+            e.ID = newID;
             
-            return x.AppendJson<Employee>(e, _employeesFile);
+            emp.Add(e);
+
+            return x.WriteJson<Employee>(emp, _employeesFile);
         }
 
         public bool RemoveEmployee(Employee e)
@@ -52,7 +59,7 @@ namespace Civil_Construction_Management.Models.Repositories
             List<Employee> _employees = x.ReadJson<Employee>(_employeesFile);
 
             
-            var tmp = _employees.FirstOrDefault(n => n.NIF == e.NIF);
+            var tmp = _employees.FirstOrDefault(n => n.ID == e.ID);
             if (tmp == null)
                 return false;
 
@@ -66,6 +73,15 @@ namespace Civil_Construction_Management.Models.Repositories
         {
 
             return x.ReadJson<Employee>(_employeesFile);
+        }
+
+        public bool WriteEmployees(List<Employee> employees)
+        {
+
+            if (employees == null)
+                return false;
+
+            return x.WriteJson<Employee>(employees, _employeesFile);
         }
     }
 }

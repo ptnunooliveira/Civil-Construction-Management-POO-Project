@@ -183,7 +183,7 @@
                         BorderThickness="2"
                         FontFamily="Segoe UI Light"
                         Command="{Binding CurrentEditCommand}"
-                        CommandParameter="{Binding CurrentViewModel.SelectedEmployee}"/>
+                        CommandParameter="{Binding CurrentViewModel.SelectedObject}"/>
 
                 <Button Grid.Row="1" Content="Delete"
                         HorizontalAlignment="Right"
@@ -195,7 +195,7 @@
                         BorderThickness="2"
                         FontFamily="Segoe UI Light"                        
                         Command="{Binding CurrentDeleteCommand}"
-                        CommandParameter="{Binding CurrentViewModel.SelectedEmployee}"/>
+                        CommandParameter="{Binding CurrentViewModel.SelectedObject}"/>
                         
             </Grid>
             

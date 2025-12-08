@@ -29,9 +29,7 @@ namespace Civil_Construction_Management.ViewModels
                     _currentViewModel = value;
                     OnPropertyChanged(nameof(CurrentViewModel));
 
-                    UpdateAddCommand();
-                    UpdateEditCommand();
-                    UpdateDeleteCommand();
+                    UpdateCommands();
                 }
             }
         }
@@ -58,9 +56,7 @@ namespace Civil_Construction_Management.ViewModels
 
             ShowEmployeesCommand = new ViewModelCommand(ExecuteShowEmployeesCommand);
             ShowProjectsCommand = new ViewModelCommand(ExecuteShowProjectsCommand);
-            UpdateAddCommand();
-            UpdateEditCommand();
-            UpdateDeleteCommand();
+            UpdateCommands();
         }
 
         #endregion
@@ -80,41 +76,33 @@ namespace Civil_Construction_Management.ViewModels
 
             CurrentViewModel = new ListingProjectViewModel(_viewFactory, _managerProject);
         }
-        
-        // Update the Add button, which is the same button for every viewmodel
-        private void UpdateAddCommand()
+
+        // Button update, which is the same button for every viewmodel
+        private void UpdateCommands()
         {
-            if(CurrentViewModel is ListingEmployeeViewModel levm)
+            if (CurrentViewModel is ListingEmployeeViewModel levm)
             {
 
                 CurrentAddCommand = new ViewModelCommand(levm.ExecuteAddEmployeeWindowCommand);
                 OnPropertyChanged(nameof(CurrentAddCommand));
+
+                CurrentEditCommand = new ViewModelCommand(levm.ExecuteEditEmployeeWindowCommand);
+                OnPropertyChanged(nameof(CurrentEditCommand));
+
+                CurrentDeleteCommand = new ViewModelCommand(levm.ExecuteDeleteEmployeeWindowCommand);
+                OnPropertyChanged(nameof(CurrentDeleteCommand));
             }
 
-            else if(CurrentViewModel is ListingProjectViewModel lpvm)
+            else if (CurrentViewModel is ListingProjectViewModel lpvm)
             {
 
                 CurrentAddCommand = new ViewModelCommand(lpvm.ExecuteAddProjectWindowCommand);
                 OnPropertyChanged(nameof(CurrentAddCommand));
-            }
-        }
 
-        private void UpdateEditCommand()
-        {
-            if(CurrentViewModel is ListingEmployeeViewModel levm)
-            {
-
-                CurrentEditCommand = new ViewModelCommand(levm.ExecuteEditEmployeeWindowCommand);
+                CurrentEditCommand = new ViewModelCommand(lpvm.ExecuteEditProjectWindowCommand);
                 OnPropertyChanged(nameof(CurrentEditCommand));
-            }
-        }
 
-        private void UpdateDeleteCommand()
-        {
-            if(CurrentViewModel is ListingEmployeeViewModel levm)
-            {
-
-                CurrentDeleteCommand = new ViewModelCommand(levm.ExecuteDeleteEmployeeWindowCommand);
+                CurrentDeleteCommand = new ViewModelCommand(lpvm.ExecuteDeleteProjectWindowCommand);
                 OnPropertyChanged(nameof(CurrentDeleteCommand));
             }
         }

@@ -21,7 +21,7 @@ namespace Civil_Construction_Management.ViewModels.Services
             if (e == null)
                 throw new ArgumentException("Invalid argument.");
 
-            if (_employeeRepository.GetEmployeeByNIF(e.NIF) == default)
+            if (_employeeRepository.GetEmployeeByID(e.ID) == default)
                 return false;
 
             return true;
@@ -50,19 +50,21 @@ namespace Civil_Construction_Management.ViewModels.Services
             if (updatedEmployee == null)
                 return false;
 
-            var oldEmployee = _employeeRepository.GetEmployeeByNIF(updatedEmployee.NIF);
+            var employees = _employeeRepository.GetAllEmployees();
+
+            var oldEmployee = employees.FirstOrDefault<Employee>(e => e.ID == updatedEmployee.ID);
             if (oldEmployee == null)
                 return false;
 
-            var success = _employeeRepository.RemoveEmployee(oldEmployee);
-            if (!success)
-                return false;
+            oldEmployee.Name = updatedEmployee.Name;
+            oldEmployee.NIF = updatedEmployee.NIF;
+            oldEmployee.PhoneNumber = updatedEmployee.PhoneNumber;
+            oldEmployee.Email = updatedEmployee.Email;
+            oldEmployee.Role = updatedEmployee.Role;
+            oldEmployee.SalaryHour = updatedEmployee.SalaryHour;
+            oldEmployee.StartDate = updatedEmployee.StartDate;
 
-            success = _employeeRepository.AddEmployee(updatedEmployee);
-            if (!success)
-                return false;
-
-            return true;
+            return _employeeRepository.WriteEmployees(employees);
         }
 
         public bool DeleteEmployee(Employee e)

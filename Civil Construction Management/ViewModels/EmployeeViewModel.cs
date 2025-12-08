@@ -18,6 +18,19 @@ namespace Civil_Construction_Management.ViewModels
 
         #region Public Properties
 
+        public int ID
+        {
+            get => _employee.ID;
+            set
+            {
+                if(_employee.ID != value)
+                {
+                    _employee.ID = value;
+                    OnPropertyChanged(nameof(ID));
+                }
+            }
+        }
+
         public string Name
         {
             get => _employee.Name;
@@ -108,20 +121,7 @@ namespace Civil_Construction_Management.ViewModels
                 }
             }
         }
-
-        public bool EditMode
-        {
-            get => _editMode;
-            set
-            {
-                if(_editMode != value)
-                {
-                    _editMode = value;
-                    OnPropertyChanged(nameof(EditMode));
-                }
-            }
-        }
-
+            
         public Action? HideWindowAction { get; set; }
         public ICommand SaveEmployeeCommand { get; }
 
@@ -176,7 +176,7 @@ namespace Civil_Construction_Management.ViewModels
 
             else if(_editMode == true)
             {
-                var success = _managerEmployee.UpdateEmployee(_employee);
+                bool success = _managerEmployee.UpdateEmployee(_employee);
                 if (!success)
                     return;
             }

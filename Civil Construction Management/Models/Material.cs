@@ -3,11 +3,9 @@
     public class Material
     {
 
-        private static int _currentID = 1;
-
         #region Private Fields
 
-        private int _id;
+        private int _projectID;
         private string _name;
         private int _quantity;
         private double _unitPrice;
@@ -17,60 +15,13 @@
 
         #region Public Properties
 
-        public int ID { get; }
+        public int ProjectID { get; set; }
 
-        public string Name
-        {
-            get => _name;
-            set
-            {
-                if (string.IsNullOrEmpty(value))
-                {
-                    throw new ArgumentException("Name can't be empty or null.");
-                }
+        public string Name { get; set; }
 
-                if (value.Length > 50)
-                {
-                    throw new ArgumentException("Name can't be longer than 50 characters.");
-                }
+        public int Quantity { get; set; }
 
-                _name = value;
-            }
-        }
-
-        public int Quantity
-        {
-            get => _quantity;
-            set
-            {
-                if (value == default)
-                {
-                    throw new ArgumentException("Quantity can't be empty");
-                }
-
-                if (value < 0)
-                {
-                    throw new ArgumentException("Negative numbers are not valid.");
-                }
-            }
-        }
-
-        public double UnitPrice
-        {
-            get => _unitPrice;
-            set
-            {
-                if (value == default)
-                {
-                    throw new ArgumentException("Unit price can't be empty.");
-                }
-
-                if (value <= 0)
-                {
-                    throw new ArgumentException("Unit price must be higher than 0€.");
-                }
-            }
-        }
+        public double UnitPrice { get; set; }
 
         #endregion
 
@@ -79,51 +30,12 @@
 
         public Material(string name, int quantity, double unitPrice)
         {
+
             Name = name;
             Quantity = quantity;
             UnitPrice = unitPrice;
-
-            _id = _currentID++;
         }
 
         #endregion
-
-
-        #region Methods
-
-        public void QuantityUpdate(int howMuch)
-        {
-            if (howMuch == default)
-                throw new ArgumentException("Error, please check the value.");
-
-            if (howMuch <= 0)
-                throw new ArgumentException("You can't add a negative number or zero.");
-
-            Quantity += howMuch;
-        }
-
-        public void CheckQuantity()
-        {
-            // Ver quantidade
-        }
-
-        public void UpdateUnitPrice(double newUnitPrice)
-        {
-            if(newUnitPrice == default)
-                throw new ArgumentException("Error, please check the value.");
-
-            if (newUnitPrice <= 0)
-                throw new ArgumentException($"{Name}'s unity price must be positive.");
-
-            UnitPrice = newUnitPrice;
-        }
-
-        public void ViewDescription()
-        {
-
-        }
-
-        #endregion
-
     }
 }

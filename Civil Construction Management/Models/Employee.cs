@@ -5,6 +5,7 @@
 
         #region Private Fields
 
+        private int _id;
         private string _name;
         private string _nif;
         private string _phoneNumber;
@@ -18,6 +19,8 @@
 
         #region Public Properties
 
+        public int ID { get; set; }
+        
         public string Name { get; set; }
         
         public string NIF { get; set; }

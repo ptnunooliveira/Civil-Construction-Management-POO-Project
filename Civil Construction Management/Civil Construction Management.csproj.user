@@ -5,6 +5,9 @@
     <Compile Update="Views\AddEmployeeWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\AddMaterialWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\AddProjectWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>

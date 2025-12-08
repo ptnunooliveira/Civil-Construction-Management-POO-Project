@@ -9,7 +9,7 @@
         <ListView x:Name="EmployeeListView"
                   Background="Transparent"
                   ItemsSource="{Binding Employees}"
-                  SelectedItem="{Binding SelectedEmployee, Mode=TwoWay}"
+                  SelectedItem="{Binding SelectedObject, Mode=TwoWay}"
                   HorizontalAlignment="Stretch"
                   VerticalAlignment="Stretch">
 
@@ -36,7 +36,8 @@
 
             <ListView.View>
                 <GridView>
-                    
+
+                    <GridViewColumn Header="ID" DisplayMemberBinding="{Binding ID}" Width="Auto"/>
                     <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="Auto"/>
                     <GridViewColumn Header="NIF" DisplayMemberBinding="{Binding NIF}" Width="Auto"/>
                     <GridViewColumn Header="Phone" DisplayMemberBinding="{Binding PhoneNumber}" Width="Auto"/>

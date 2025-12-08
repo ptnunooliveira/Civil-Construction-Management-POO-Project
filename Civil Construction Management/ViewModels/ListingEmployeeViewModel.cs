@@ -11,7 +11,7 @@ namespace Civil_Construction_Management.ViewModels
 
         #region Private Fields
 
-        private Employee _selectedEmployee;
+        private Employee _selectedObject;
         private IViewFactory _viewFactory;
         private IMessageService _messageService;
         private readonly IManagerEmployee _managerEmployee;
@@ -21,16 +21,16 @@ namespace Civil_Construction_Management.ViewModels
 
 
         #region Public Properties
-        public Employee SelectedEmployee
+        public Employee SelectedObject
         {
-            get => _selectedEmployee;
+            get => _selectedObject;
             set
             {
-                if(_selectedEmployee != value)
+                if(_selectedObject != value)
                 {
 
-                    _selectedEmployee = value;
-                    OnPropertyChanged(nameof(SelectedEmployee));
+                    _selectedObject = value;
+                    OnPropertyChanged(nameof(SelectedObject));
                 }
             }
         }
@@ -57,7 +57,7 @@ namespace Civil_Construction_Management.ViewModels
 
         #region Methods
 
-        public void LoadEmployees()
+        private void LoadEmployees()
         {
 
             var employeeList = _managerEmployee.GetAllEmployees();
@@ -69,7 +69,10 @@ namespace Civil_Construction_Management.ViewModels
         {
 
             Window addEmployeeWindow = _viewFactory.CreateView(ViewType.AddEmployee);
-            addEmployeeWindow.Show();
+            addEmployeeWindow.ShowDialog();
+
+            _employees.Clear();
+            LoadEmployees();
         }
 
         public void ExecuteEditEmployeeWindowCommand(object parameter)
@@ -81,8 +84,13 @@ namespace Civil_Construction_Management.ViewModels
             var viewModel = new EmployeeViewModel(e, _managerEmployee);
             Window editEmployeeWindow = _viewFactory.CreateView(ViewType.AddEmployee);
             editEmployeeWindow.DataContext = viewModel;
-            editEmployeeWindow.Show();
+            
             viewModel.HideWindowAction = () => editEmployeeWindow.Close();
+
+            editEmployeeWindow.ShowDialog();
+
+            _employees.Clear();
+            LoadEmployees();
         }
 
         public void ExecuteDeleteEmployeeWindowCommand(object parameter)

@@ -7,6 +7,7 @@
         Main,
         CreateAccount,
         AddEmployee,
-        AddProject
+        AddProject,
+        AddMaterial
     }
 }

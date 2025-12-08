@@ -3,9 +3,10 @@
     public interface IEmployeeRepository
     {
         
-        public Employee GetEmployeeByNIF(string nif);
+        public Employee GetEmployeeByID(int id);
         public bool AddEmployee(Employee e);
         public bool RemoveEmployee(Employee e);
         public List<Employee> GetAllEmployees();
+        public bool WriteEmployees(List<Employee> employees);
     }
 }
