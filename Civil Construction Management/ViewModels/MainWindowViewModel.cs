@@ -68,13 +68,13 @@ namespace Civil_Construction_Management.ViewModels
         private void ExecuteShowEmployeesCommand(object parameter)
         {
 
-            CurrentViewModel = new ListingEmployeeViewModel(_managerEmployee, _viewFactory, _messageService);
+            CurrentViewModel = new ListingEmployeeViewModel(_managerEmployee, _viewFactory, _messageService, _managerProject);
         }
 
         private void ExecuteShowProjectsCommand(object parameter)
         {
 
-            CurrentViewModel = new ListingProjectViewModel(_viewFactory, _managerProject);
+            CurrentViewModel = new ListingProjectViewModel(_viewFactory, _managerProject, _managerEmployee);
         }
 
         // Button update, which is the same button for every viewmodel

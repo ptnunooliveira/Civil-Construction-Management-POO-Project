@@ -6,6 +6,7 @@
         #region Private Fields
 
         private int _id;
+        private int _projectID;
         private string _name;
         private string _nif;
         private string _phoneNumber;
@@ -20,6 +21,8 @@
         #region Public Properties
 
         public int ID { get; set; }
+
+        public int ProjectID { get; set; }
         
         public string Name { get; set; }
         
@@ -49,7 +52,7 @@
             Email = email;
             Role = role;
             SalaryHour = salaryHour;
-            StartDate = startDate;
+            StartDate = startDate;            
         }
 
         #endregion

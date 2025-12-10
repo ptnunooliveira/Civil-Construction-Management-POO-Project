@@ -6,7 +6,7 @@
 
     <Grid VerticalAlignment="Stretch">        
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
 
@@ -64,7 +64,7 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <TextBlock Text="Materials" FontWeight="Bold" VerticalAlignment="Center" FontSize="16"/>
+            <TextBlock Text=" Materials" FontWeight="Bold" VerticalAlignment="Center" FontSize="16"/>
 
             <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Height="15" Width="45">
                 <Button Content="+" Width="15" Height="15" ToolTip="Add Material" Command="{Binding AddMaterialCommand}" CommandParameter="{Binding SelectedObject}"/>
@@ -101,9 +101,9 @@
 
                 <ListView.View>
                     <GridView >
-                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="Auto"/>
-                        <GridViewColumn Header="Quantity" DisplayMemberBinding="{Binding Quantity}" Width="Auto"/>
-                        <GridViewColumn Header="Price" DisplayMemberBinding="{Binding UnitPrice}" Width="Auto"/>
+                        <GridViewColumn Header="  Name" DisplayMemberBinding="{Binding Name}" Width="Auto"/>
+                        <GridViewColumn Header="  N" DisplayMemberBinding="{Binding Quantity}" Width="Auto"/>
+                        <GridViewColumn Header="  €" DisplayMemberBinding="{Binding UnitPrice}" Width="Auto"/>
                     </GridView>
                 </ListView.View>
             </ListView>
@@ -117,16 +117,16 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <TextBlock Text="Services" FontWeight="Bold" VerticalAlignment="Center" FontSize="16"/>
+            <TextBlock Text=" Services" FontWeight="Bold" VerticalAlignment="Center" FontSize="16"/>
 
             <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Height="15" Width="45">
-                <Button Content="+" Width="15" Height="15" ToolTip="Adicionar Material"/>
-                <Button Content="-" Width="15" Height="15" Margin="2 0 0 0" ToolTip="Remover Material"/>
+                <Button Content="+" Width="15" Height="15" ToolTip="Add Service" Command="{Binding AddServiceCommand}" CommandParameter="{Binding SelectedObject}"/>
+                <Button Content="-" Width="15" Height="15" Margin="2 0 0 0" ToolTip="Delete Service" Command="{Binding DeleteServiceCommand}" CommandParameter="{Binding SelectedService}"/>
             </StackPanel>
 
             <ListView Grid.Column="1" Grid.Row="1" x:Name="ServiceListView"
                   Background="Transparent"
-                  ItemsSource="{Binding SelectedProject.Services}"
+                  ItemsSource="{Binding SelectedObject.Services}"
                   SelectedItem="{Binding SelectedService, Mode=TwoWay}"
                   HorizontalAlignment="Stretch"
                   VerticalAlignment="Stretch">
@@ -155,10 +155,10 @@
                 <ListView.View>
                     <GridView >
 
-                        <GridViewColumn Header="Company" DisplayMemberBinding="{Binding CompanyName}" Width="Auto"/>
-                        <GridViewColumn Header="Status" DisplayMemberBinding="{Binding Status}" Width="Auto"/>
-                        <GridViewColumn Header="Start Date" DisplayMemberBinding="{Binding StartDate}" Width="Auto"/>
-                        <GridViewColumn Header="End Date" DisplayMemberBinding="{Binding EndDate}" Width="Auto"/>
+                        <GridViewColumn Header=" Company" DisplayMemberBinding="{Binding CompanyName}" Width="Auto"/>
+                        <GridViewColumn Header=" Status" DisplayMemberBinding="{Binding Status}" Width="Auto"/>
+                        <GridViewColumn Header=" Start Date" DisplayMemberBinding="{Binding StartDate, StringFormat={}{0:dd/MM/yyyy}}" Width="Auto"/>
+                        <GridViewColumn Header=" End Date" DisplayMemberBinding="{Binding EndDate, StringFormat={}{0:dd/MM/yyyy}}" Width="Auto"/>
 
                     </GridView>
                 </ListView.View>
@@ -167,22 +167,22 @@
 
 
 
-        <Grid Grid.Row="3" Grid.Column="1">
+        <Grid Grid.Row="2" Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <TextBlock Text="Employees" FontWeight="Bold" VerticalAlignment="Center" FontSize="16"/>
+            <TextBlock Text=" Employees" FontWeight="Bold" VerticalAlignment="Center" FontSize="16"/>
 
             <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Height="15" Width="45">
-                <Button Content="+" Width="15" Height="15" ToolTip="Adicionar Material"/>
-                <Button Content="-" Width="15" Height="15" Margin="2 0 0 0" ToolTip="Remover Material"/>
+                <Button Content="+" Width="15" Height="15" ToolTip="Add Employee" Command="{Binding SelectEmployeeCommand}" CommandParameter="{Binding SelectedObject}"/>
+                <Button Content="-" Width="15" Height="15" Margin="2 0 0 0" ToolTip="Delete Employee" Command="{Binding DeleteEmployeeCommand}" CommandParameter="{Binding SelectedEmployee}"/>
             </StackPanel>
 
             <ListView Grid.Column="1" Grid.Row="2" x:Name="EmployeeListView"
                   Background="Transparent"
-                  ItemsSource="{Binding SelectedProject.Employees}"
+                  ItemsSource="{Binding SelectedObject.Employees}"
                   SelectedItem="{Binding SelectedEmployee, Mode=TwoWay}"
                   HorizontalAlignment="Stretch"
                   VerticalAlignment="Stretch">
@@ -210,10 +210,11 @@
 
                 <ListView.View>
                     <GridView >
-
-                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="Auto"/>
-                        <GridViewColumn Header="Contact" DisplayMemberBinding="{Binding PhoneNumber}" Width="Auto"/>
-                        <GridViewColumn Header="Email" DisplayMemberBinding="{Binding Email}" Width="Auto"/>
+                        
+                        <GridViewColumn Header=" ID" DisplayMemberBinding="{Binding ID}" Width="Auto"/>
+                        <GridViewColumn Header=" Name" DisplayMemberBinding="{Binding Name}" Width="Auto"/>
+                        <GridViewColumn Header=" Contact" DisplayMemberBinding="{Binding PhoneNumber}" Width="Auto"/>
+                        <GridViewColumn Header=" Email" DisplayMemberBinding="{Binding Email}" Width="Auto"/>
 
                     </GridView>
                 </ListView.View>

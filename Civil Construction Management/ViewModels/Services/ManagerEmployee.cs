@@ -56,6 +56,7 @@ namespace Civil_Construction_Management.ViewModels.Services
             if (oldEmployee == null)
                 return false;
 
+            oldEmployee.ProjectID = updatedEmployee.ProjectID;
             oldEmployee.Name = updatedEmployee.Name;
             oldEmployee.NIF = updatedEmployee.NIF;
             oldEmployee.PhoneNumber = updatedEmployee.PhoneNumber;

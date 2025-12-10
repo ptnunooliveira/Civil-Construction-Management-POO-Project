@@ -40,14 +40,21 @@ namespace Civil_Construction_Management.Models.Repositories
             if (e == null)
                 throw new ArgumentException("Invalid employee.");
 
-            var emp = x.ReadJson<Employee>(_employeesFile);
+            var employees = x.ReadJson<Employee>(_employeesFile);
 
-            int newID = emp.Count + 1;
+            int newID = 1;
+                        
+            foreach(var emp in employees)
+            {
+                if (emp.ID >= newID)
+                    newID = emp.ID + 1;
+            }
+
             e.ID = newID;
             
-            emp.Add(e);
+            employees.Add(e);
 
-            return x.WriteJson<Employee>(emp, _employeesFile);
+            return x.WriteJson<Employee>(employees, _employeesFile);
         }
 
         public bool RemoveEmployee(Employee e)

@@ -35,19 +35,29 @@ namespace Civil_Construction_Management.Models.Repositories
 
         #region Methods
 
+        #region Project
+
         public bool AddProject(Project p)
         {
 
             if (p == null)
                 return false;
 
-            var proj = LoadProjects();
+            var projs = LoadProjects();
 
-            int newID = proj.Count + 1;
+            int newID = 1;
+
+            foreach(var proj in projs)
+            {                
+                if (proj.ID >= newID)
+                    newID = proj.ID + 1;
+            }
+
             p.ID = newID;
-            proj.Add(p);
+
+            projs.Add(p);
             
-            return x.WriteJson<Project>(proj, _projectFile);
+            return x.WriteJson<Project>(projs, _projectFile);
         }
 
         public Project GetProjectByID(int id)
@@ -91,6 +101,11 @@ namespace Civil_Construction_Management.Models.Repositories
             return x.WriteJson<Project>(projects, _projectFile);
         }
 
+        #endregion
+
+
+        #region Material
+
         public bool AddMaterialToProject(int projectID, Material material)
         {
 
@@ -132,6 +147,106 @@ namespace Civil_Construction_Management.Models.Repositories
 
             return x.WriteJson<Project>(projects, _projectFile);
         }
+
+        #endregion
+
+
+        #region Service
+
+        public bool AddServiceToProject(int projectID, Service service)
+        {
+
+            if (projectID < 0 || service == null)
+                return false;
+
+            var projects = LoadProjects();
+            if (projects == null)
+                return false;
+
+            var project = projects.FirstOrDefault<Project>(p => p.ID == projectID);
+            if (project == null)
+                return false;
+
+            project.Services.Add(service);
+
+            return x.WriteJson<Project>(projects, _projectFile);
+        }
+
+        public bool DeleteService(Service service)
+        {
+
+            if (service == null)
+                return false;
+
+            var projects = LoadProjects();
+            if (projects == null)
+                return false;
+
+            var project = projects.FirstOrDefault<Project>(p => p.ID == service.ProjectID);
+            if (project == null)
+                return false;
+
+            var serviceToDelete = project.Services.FirstOrDefault<Service>(s => s.CompanyName == service.CompanyName &&
+                s.Status == service.Status &&
+                s.ServiceHours == service.ServiceHours &&
+                s.StartDate == service.StartDate &&
+                s.EndDate == service.EndDate);
+            if (serviceToDelete == null)
+                return false;
+
+            project.Services.Remove(serviceToDelete);
+
+            return x.WriteJson<Project>(projects, _projectFile);
+        }
+
+        #endregion
+
+
+        #region Employee
+
+        public bool AddEmployeeToProject(int projectID, Employee employee)
+        {
+
+            if (projectID < 0 || employee == null)
+                return false;
+
+            var projects = LoadProjects();
+            if (projects == null)
+                return false;
+
+            var project = projects.FirstOrDefault<Project>(p => p.ID == projectID);
+            if (project == null)
+                return false;
+
+            project.Employees.Add(employee);
+
+            return x.WriteJson<Project>(projects, _projectFile);
+        }
+
+        public bool DeleteEmployee(Employee employee)
+        {
+
+            if (employee == null)
+                return false;
+
+            var projects = LoadProjects();
+            if (projects == null)
+                return false;
+
+            var project = projects.FirstOrDefault<Project>(p => p.ID == employee.ProjectID);
+            if (project == null)
+                return false;
+
+            var employeeToDelete = project.Employees.FirstOrDefault<Employee>(e => e.ID == employee.ID);
+            if (employeeToDelete == null)
+                return false;
+
+            project.Employees.Remove(employeeToDelete);
+
+            return x.WriteJson<Project>(projects, _projectFile);
+        }
+
+        #endregion
 
         #endregion
     }

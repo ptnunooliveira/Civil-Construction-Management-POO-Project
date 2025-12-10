@@ -1,0 +1,31 @@
+﻿<Window x:Class="Civil_Construction_Management.Views.SelectEmployeeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Select Employee" Height="400" Width="300"
+        WindowStartupLocation="CenterScreen">
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <ListView Grid.Row="0" 
+                  ItemsSource="{Binding Employees}"
+                  SelectedItem="{Binding SelectedObject, Mode=TwoWay}"
+                  BorderBrush="Gray" 
+                  BorderThickness="1">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="150"/>
+                    <GridViewColumn Header="Role" DisplayMemberBinding="{Binding Role}" Width="100"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <Button Grid.Row="1" Content="Add Employee to Project" 
+                Height="30" Margin="0 10 0 0"
+                Command="{Binding AddSelectEmployeeCommand}" CommandParameter="{Binding SelectedObject}"
+                Background="BlanchedAlmond" BorderBrush="Black"/>
+    </Grid>
+</Window>

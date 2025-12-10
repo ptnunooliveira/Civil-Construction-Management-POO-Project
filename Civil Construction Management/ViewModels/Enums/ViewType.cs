@@ -8,6 +8,8 @@
         CreateAccount,
         AddEmployee,
         AddProject,
-        AddMaterial
+        AddMaterial,
+        AddService,
+        SelectEmployee
     }
 }

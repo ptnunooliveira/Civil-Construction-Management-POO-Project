@@ -80,7 +80,7 @@ namespace Civil_Construction_Management.ViewModels
         public MaterialViewModel(IManagerProject managerProject)
         {
 
-            _material = new Material("Name", 0, 0);
+            _material = new Material(string.Empty, 0, 0);
             _managerProject = managerProject;
 
             SaveMaterialCommand = new ViewModelCommand(ExecuteSaveCommand);

@@ -10,5 +10,9 @@
         public bool DeleteProject(Project p);
         public bool AddMaterialToProject(int projectID, Material material);
         public bool DeleteMaterial(Material material);
+        public bool AddServiceToProject(int projectID, Service service);
+        public bool DeleteService(Service service);
+        public bool AddEmployeeToProject(int projectID, Employee employee);
+        public bool DeleteEmployee(Employee employee);
     }
 }

@@ -27,6 +27,8 @@ namespace Civil_Construction_Management.ViewModels.Services
 
         #region Methods
 
+        #region Project
+
         public bool AddProject(Project p)
         {
 
@@ -72,6 +74,11 @@ namespace Civil_Construction_Management.ViewModels.Services
             return _projectRepository.DeleteProject(p);
         }
 
+        #endregion
+
+
+        #region Material
+
         public bool AddMaterialToProject(int projectID, Material material)
         {
 
@@ -89,6 +96,54 @@ namespace Civil_Construction_Management.ViewModels.Services
 
             return _projectRepository.DeleteMaterial(material);
         }
+
+        #endregion
+
+
+        #region Service
+
+        public bool AddServiceToProject(int projectID, Service service)
+        {
+
+            if (projectID < 0 || service == null)
+                return false;
+
+            return _projectRepository.AddServiceToProject(projectID, service);
+        }
+
+        public bool DeleteService(Service service)
+        {
+            if (service == null)
+                return false;
+
+            return _projectRepository.DeleteService(service);
+        }
+
+        #endregion
+
+
+        #region Employee
+
+        public bool AddEmployeeToProject(int projectID, Employee employee)
+        {
+
+            if (projectID < 0 || employee == null)
+                return false;
+
+            return _projectRepository.AddEmployeeToProject(projectID, employee);
+        }
+
+        public bool DeleteEmployee(Employee employee)
+        {
+
+            if (employee == null)
+                return false;
+
+            return _projectRepository.DeleteEmployee(employee);
+        }            
+
+        #endregion
+
         #endregion
     }
 }

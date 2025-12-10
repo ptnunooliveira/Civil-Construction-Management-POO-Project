@@ -3,6 +3,7 @@ using Civil_Construction_Management.ViewModels.Enums;
 using Civil_Construction_Management.ViewModels.Interfaces;
 using System.Collections.ObjectModel;
 using System.Windows;
+using System.Windows.Input;
 
 namespace Civil_Construction_Management.ViewModels
 {
@@ -10,12 +11,13 @@ namespace Civil_Construction_Management.ViewModels
     {
 
         #region Private Fields
-
+                
         private Employee _selectedObject;
         private IViewFactory _viewFactory;
         private IMessageService _messageService;
-        private readonly IManagerEmployee _managerEmployee;
-        private readonly ObservableCollection<Employee> _employees;
+        private IManagerEmployee _managerEmployee;
+        private ObservableCollection<Employee> _employees;
+        private IManagerProject _managerProject;
 
         #endregion
 
@@ -35,19 +37,25 @@ namespace Civil_Construction_Management.ViewModels
             }
         }
 
+        public int ProjectID{ get; set; }
+        public Action HideWindowAction { get; set; }
+        public ICommand AddSelectEmployeeCommand { get; }
         public ObservableCollection<Employee> Employees => _employees;
 
         #endregion
 
 
         #region Constructor
-        public ListingEmployeeViewModel(IManagerEmployee managerEmployee, IViewFactory viewFactory, IMessageService messageService)
+        public ListingEmployeeViewModel(IManagerEmployee managerEmployee, IViewFactory viewFactory, IMessageService messageService, IManagerProject managerProject)
         {
 
             _employees = new ObservableCollection<Employee>();
             _managerEmployee = managerEmployee;
             _viewFactory = viewFactory;
-            _messageService = messageService; 
+            _messageService = messageService;
+            _managerProject = managerProject;
+
+            AddSelectEmployeeCommand = new ViewModelCommand(ExecuteAddSelectEmployee);
 
             LoadEmployees();
         }
@@ -57,14 +65,19 @@ namespace Civil_Construction_Management.ViewModels
 
         #region Methods
 
-        private void LoadEmployees()
+
+        #region Employees
+
+        public void LoadEmployees()
         {
+
+            _employees.Clear();
 
             var employeeList = _managerEmployee.GetAllEmployees();
             foreach (var e in employeeList)
                 _employees.Add(e);
         }
-
+                
         public void ExecuteAddEmployeeWindowCommand(object parameter)
         {
 
@@ -113,8 +126,9 @@ namespace Civil_Construction_Management.ViewModels
                 bool success = _managerEmployee.DeleteEmployee(e);
                 if (success)
                 {
+
                     _employees.Remove(e);
-                    _messageService.ShowMessage("Employee removed successfully.");
+                    _messageService.ShowMessage("Employee removed successfully.");                    
                 }
                 else
                     _messageService.ShowMessage("Not possible.");
@@ -122,6 +136,35 @@ namespace Civil_Construction_Management.ViewModels
             else
                 return;
         }
+
+        #endregion
+
+
+        #region Project
+        private void ExecuteAddSelectEmployee(object parameter)
+        {
+
+            if (parameter is not Employee e)
+                return;
+
+            if(e.ProjectID != 0)
+            {
+                MessageBox.Show($"{e.Name} already belongs to a project.");
+                return;
+            }
+
+            e.ProjectID = ProjectID;
+            _managerEmployee.UpdateEmployee(e);
+                        
+            bool success = _managerProject.AddEmployeeToProject(ProjectID, e);
+            if (!success)
+                return;
+
+            HideWindowAction?.Invoke();
+        }
+
+        #endregion
+
 
         #endregion
     }

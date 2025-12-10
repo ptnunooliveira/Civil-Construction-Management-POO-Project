@@ -16,6 +16,8 @@ namespace Civil_Construction_Management.Views.Services
                 ViewType.AddEmployee => new AddEmployeeWindow(),
                 ViewType.AddProject => new AddProjectWindow(),
                 ViewType.AddMaterial => new AddMaterialWindow(),
+                ViewType.AddService => new AddServiceWindow(),
+                ViewType.SelectEmployee => new SelectEmployeeWindow(),
 
                 _ => throw new NotImplementedException($"ViewFactory does not support view type {type}.")
             };
