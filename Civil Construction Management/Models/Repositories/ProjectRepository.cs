@@ -4,6 +4,11 @@ using System.IO;
 
 namespace Civil_Construction_Management.Models.Repositories
 {
+    /// <summary>
+    /// Repository responsible for handling CRUD operations for projects
+    /// and managing associated materials, services, and employees.
+    /// Data is persisted in a JSON file located in the Data directory.
+    /// </summary>
     public class ProjectRepository : IProjectRepository
     {
 
@@ -15,9 +20,14 @@ namespace Civil_Construction_Management.Models.Repositories
         private readonly VerifyRepositories x = new VerifyRepositories();
 
         #endregion
-        
+
 
         #region Constructor
+
+        /// <summary>
+        /// Initializes the repository, ensures the Data folder exists,
+        /// and creates the projects.json file if it does not already exist.
+        /// </summary>
         public ProjectRepository()
         {
 
@@ -37,6 +47,11 @@ namespace Civil_Construction_Management.Models.Repositories
 
         #region Project
 
+        /// <summary>
+        /// Adds a new project to the repository and assigns a unique incremental ID.
+        /// </summary>
+        /// <param name="p">The Project object to add.</param>
+        /// <returns>True if the project was added successfully; otherwise, False.</returns>
         public bool AddProject(Project p)
         {
 
@@ -47,8 +62,8 @@ namespace Civil_Construction_Management.Models.Repositories
 
             int newID = 1;
 
-            foreach(var proj in projs)
-            {                
+            foreach (var proj in projs)
+            {
                 if (proj.ID >= newID)
                     newID = proj.ID + 1;
             }
@@ -56,10 +71,15 @@ namespace Civil_Construction_Management.Models.Repositories
             p.ID = newID;
 
             projs.Add(p);
-            
+
             return x.WriteJson<Project>(projs, _projectFile);
         }
 
+        /// <summary>
+        /// Retrieves a project based on its unique ID.
+        /// </summary>
+        /// <param name="id">The ID of the project.</param>
+        /// <returns>The Project object if found; otherwise, null.</returns>
         public Project GetProjectByID(int id)
         {
 
@@ -68,12 +88,21 @@ namespace Civil_Construction_Management.Models.Repositories
             return proj.FirstOrDefault(p => p.ID == id);
         }
 
+        /// <summary>
+        /// Loads and returns all projects stored in the repository.
+        /// </summary>
+        /// <returns>A list of Project objects.</returns>
         public List<Project> LoadProjects()
         {
 
             return x.ReadJson<Project>(_projectFile);
         }
 
+        /// <summary>
+        /// Writes or updates the list of projects in the JSON storage.
+        /// </summary>
+        /// <param name="projects">The list of projects to save.</param>
+        /// <returns>True if writing was successful; otherwise, False.</returns>
         public bool WriteProjects(List<Project> projects)
         {
 
@@ -83,6 +112,11 @@ namespace Civil_Construction_Management.Models.Repositories
             return x.WriteJson<Project>(projects, _projectFile);
         }
 
+        /// <summary>
+        /// Deletes a project from the repository.
+        /// </summary>
+        /// <param name="p">The Project object to delete.</param>
+        /// <returns>True if the project was deleted; otherwise, False.</returns>
         public bool DeleteProject(Project p)
         {
             if (p == null)
@@ -106,6 +140,12 @@ namespace Civil_Construction_Management.Models.Repositories
 
         #region Material
 
+        /// <summary>
+        /// Adds a material to a specific project.
+        /// </summary>
+        /// <param name="projectID">The ID of the project to update.</param>
+        /// <param name="material">The Material object to add.</param>
+        /// <returns>True if the material was added; otherwise, False.</returns>
         public bool AddMaterialToProject(int projectID, Material material)
         {
 
@@ -125,6 +165,11 @@ namespace Civil_Construction_Management.Models.Repositories
             return x.WriteJson<Project>(projects, _projectFile);
         }
 
+        /// <summary>
+        /// Removes a material from the project it belongs to.
+        /// </summary>
+        /// <param name="material">The Material object to remove.</param>
+        /// <returns>True if the material was removed; otherwise, False.</returns>
         public bool DeleteMaterial(Material material)
         {
 
@@ -139,7 +184,11 @@ namespace Civil_Construction_Management.Models.Repositories
             if (project == null)
                 return false;
 
-            var materialToDelete = project.Materials.FirstOrDefault<Material>(m => m.Name == material.Name && m.Quantity == material.Quantity && m.UnitPrice == material.UnitPrice);
+            var materialToDelete = project.Materials.FirstOrDefault<Material>(m =>
+                m.Name == material.Name &&
+                m.Quantity == material.Quantity &&
+                m.UnitPrice == material.UnitPrice);
+
             if (materialToDelete == null)
                 return false;
 
@@ -153,6 +202,12 @@ namespace Civil_Construction_Management.Models.Repositories
 
         #region Service
 
+        /// <summary>
+        /// Adds a service to a specific project.
+        /// </summary>
+        /// <param name="projectID">The ID of the project.</param>
+        /// <param name="service">The Service object to add.</param>
+        /// <returns>True if the service was added; otherwise, False.</returns>
         public bool AddServiceToProject(int projectID, Service service)
         {
 
@@ -172,6 +227,11 @@ namespace Civil_Construction_Management.Models.Repositories
             return x.WriteJson<Project>(projects, _projectFile);
         }
 
+        /// <summary>
+        /// Removes a service from the project it belongs to.
+        /// </summary>
+        /// <param name="service">The Service object to remove.</param>
+        /// <returns>True if the service was removed; otherwise, False.</returns>
         public bool DeleteService(Service service)
         {
 
@@ -186,11 +246,13 @@ namespace Civil_Construction_Management.Models.Repositories
             if (project == null)
                 return false;
 
-            var serviceToDelete = project.Services.FirstOrDefault<Service>(s => s.CompanyName == service.CompanyName &&
+            var serviceToDelete = project.Services.FirstOrDefault<Service>(s =>
+                s.CompanyName == service.CompanyName &&
                 s.Status == service.Status &&
                 s.ServiceHours == service.ServiceHours &&
                 s.StartDate == service.StartDate &&
                 s.EndDate == service.EndDate);
+
             if (serviceToDelete == null)
                 return false;
 
@@ -204,6 +266,12 @@ namespace Civil_Construction_Management.Models.Repositories
 
         #region Employee
 
+        /// <summary>
+        /// Adds an employee to a specific project.
+        /// </summary>
+        /// <param name="projectID">The ID of the project.</param>
+        /// <param name="employee">The Employee object to add.</param>
+        /// <returns>True if the employee was added; otherwise, False.</returns>
         public bool AddEmployeeToProject(int projectID, Employee employee)
         {
 
@@ -223,6 +291,11 @@ namespace Civil_Construction_Management.Models.Repositories
             return x.WriteJson<Project>(projects, _projectFile);
         }
 
+        /// <summary>
+        /// Removes an employee from the project they belong to.
+        /// </summary>
+        /// <param name="employee">The Employee object to remove.</param>
+        /// <returns>True if the employee was removed; otherwise, False.</returns>
         public bool DeleteEmployee(Employee employee)
         {
 
@@ -237,7 +310,9 @@ namespace Civil_Construction_Management.Models.Repositories
             if (project == null)
                 return false;
 
-            var employeeToDelete = project.Employees.FirstOrDefault<Employee>(e => e.ID == employee.ID);
+            var employeeToDelete = project.Employees.FirstOrDefault<Employee>(e =>
+                e.ID == employee.ID);
+
             if (employeeToDelete == null)
                 return false;
 

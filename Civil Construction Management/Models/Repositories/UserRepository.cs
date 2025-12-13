@@ -4,6 +4,10 @@ using System.IO;
 
 namespace Civil_Construction_Management.Models.Repositories
 {
+    /// <summary>
+    /// Repository responsible for handling user data, including retrieval 
+    /// and creation of user accounts stored in a JSON file.
+    /// </summary>
     public class UserRepository : IUserRepository
     {
         private readonly string _usersFile;
@@ -11,6 +15,10 @@ namespace Civil_Construction_Management.Models.Repositories
 
         private readonly VerifyRepositories x = new VerifyRepositories();
 
+        /// <summary>
+        /// Initializes the repository, ensures the Data directory exists, 
+        /// and creates the users.json file if it does not already exist.
+        /// </summary>
         public UserRepository()
         {
 
@@ -22,8 +30,13 @@ namespace Civil_Construction_Management.Models.Repositories
             if (!File.Exists(_usersFile))
                 File.WriteAllText(_usersFile, "[]");
         }
-               
 
+        /// <summary>
+        /// Retrieves a user based on their username.
+        /// </summary>
+        /// <param name="username">The username of the user.</param>
+        /// <returns>The corresponding User object, or null if not found.</returns>
+        /// <exception cref="ArgumentException">Thrown when username is null.</exception>
         public User GetUserByUsername(string username)
         {
 
@@ -34,6 +47,12 @@ namespace Civil_Construction_Management.Models.Repositories
             return users.FirstOrDefault(x => x.Username == username);
         }
 
+        /// <summary>
+        /// Adds a new user to the repository and stores it in the JSON file.
+        /// </summary>
+        /// <param name="user">The User object to add.</param>
+        /// <returns>True if the user was added successfully; otherwise, False.</returns>
+        /// <exception cref="ArgumentException">Thrown when the user argument is invalid.</exception>
         public bool AddUser(User user)
         {
 
@@ -41,6 +60,6 @@ namespace Civil_Construction_Management.Models.Repositories
                 throw new ArgumentException("Argument not valid.");
 
             return x.AppendJson<User>(user, _usersFile);
-        }      
+        }
     }
 }

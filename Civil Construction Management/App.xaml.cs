@@ -10,16 +10,24 @@ using System.Windows;
 namespace Civil_Construction_Management
 {
     /// <summary>
-    /// Interaction logic for App.xaml
+    /// Interaction logic for App.xaml.
+    /// This class initializes the application and sets up the dependency injection container.
     /// </summary>
     public partial class App : Application
     {
-
+        /// <summary>
+        /// The static service provider used for dependency injection across the application.
+        /// </summary>
         public static IServiceProvider ServiceProvider { get; private set; }
 
+        /// <summary>
+        /// Configures and builds the application's service provider,
+        /// registering all view models, services, and repositories as singletons.
+        /// </summary>
         private static void LoadServiceProvider()
         {
             ServiceProvider = new ServiceCollection()
+                // ViewModels
                 .AddSingleton<LoginViewModel>()
                 .AddSingleton<CreateAccountViewModel>()
                 .AddSingleton<MainWindowViewModel>()
@@ -29,22 +37,31 @@ namespace Civil_Construction_Management
                 .AddSingleton<ServiceViewModel>()
                 .AddSingleton<ListingProjectViewModel>()
                 .AddSingleton<ProjectViewModel>()
+
+                // Repositories
                 .AddSingleton<IUserRepository, UserRepository>()
-                .AddSingleton<IAuthenticationService, AuthenticationService>()
                 .AddSingleton<IEmployeeRepository, EmployeeRepository>()
+                .AddSingleton<IProjectRepository, ProjectRepository>()
+
+                // Services
+                .AddSingleton<IAuthenticationService, AuthenticationService>()
                 .AddSingleton<IManagerEmployee, ManagerEmployee>()
+                .AddSingleton<IManagerProject, ManagerProject>()
                 .AddSingleton<IMessageService, MessageService>()
                 .AddSingleton<IViewFactory, ViewFactory>()
-                .AddSingleton<IManagerProject, ManagerProject>()
-                .AddSingleton<IProjectRepository, ProjectRepository>()
+
                 .BuildServiceProvider();
         }
 
+        /// <summary>
+        /// Invoked when the application starts.
+        /// Calls the method to load and configure the service provider for dependency injection.
+        /// </summary>
+        /// <param name="e">Startup event arguments.</param>
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
             LoadServiceProvider();
         }
     }
-
 }
