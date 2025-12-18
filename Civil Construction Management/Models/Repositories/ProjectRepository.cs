@@ -1,4 +1,5 @@
-﻿using Civil_Construction_Management.Models.Repositories.Interfaces;
+﻿using Civil_Construction_Management.Exceptions;
+using Civil_Construction_Management.Models.Repositories.Interfaces;
 using DLL___Project_Support;
 using System.IO;
 
@@ -58,21 +59,31 @@ namespace Civil_Construction_Management.Models.Repositories
             if (p == null)
                 return false;
 
-            var projs = LoadProjects();
-
-            int newID = 1;
-
-            foreach (var proj in projs)
+            try
             {
-                if (proj.ID >= newID)
-                    newID = proj.ID + 1;
+
+                var projs = LoadProjects();
+
+                int newID = 1;
+
+                foreach (var proj in projs)
+                {
+                    if (proj.ID >= newID)
+                        newID = proj.ID + 1;
+                }
+
+                p.ID = newID;
+
+                projs.Add(p);
+
+                return x.WriteJson<Project>(projs, _projectFile);
             }
 
-            p.ID = newID;
+            catch(Exception)
+            {
 
-            projs.Add(p);
-
-            return x.WriteJson<Project>(projs, _projectFile);
+                throw new DataAccessException("An error has occur while trying to access project data while trying to add a project.");
+            }
         }
 
         /// <summary>
@@ -83,9 +94,19 @@ namespace Civil_Construction_Management.Models.Repositories
         public Project GetProjectByID(int id)
         {
 
-            var proj = LoadProjects();
+            try
+            {
 
-            return proj.FirstOrDefault(p => p.ID == id);
+                var proj = LoadProjects();
+
+                return proj.FirstOrDefault(p => p.ID == id);
+            }
+
+            catch (Exception)
+            {
+
+                throw new DataAccessException("An error has occur while trying to access project data to get project by id.");
+            }
         }
 
         /// <summary>
@@ -94,8 +115,16 @@ namespace Civil_Construction_Management.Models.Repositories
         /// <returns>A list of Project objects.</returns>
         public List<Project> LoadProjects()
         {
+            try
+            {
 
-            return x.ReadJson<Project>(_projectFile);
+                return x.ReadJson<Project>(_projectFile);
+            }
+
+            catch (Exception)
+            {
+                throw new DataAccessException("An error has occur while trying to access project data to load projects.");
+            }
         }
 
         /// <summary>
@@ -105,11 +134,20 @@ namespace Civil_Construction_Management.Models.Repositories
         /// <returns>True if writing was successful; otherwise, False.</returns>
         public bool WriteProjects(List<Project> projects)
         {
-
+                       
             if (projects == null)
                 return false;
 
-            return x.WriteJson<Project>(projects, _projectFile);
+            try
+            {
+
+                return x.WriteJson<Project>(projects, _projectFile);
+            }
+
+            catch (Exception)
+            {
+                throw new DataAccessException("An error has occur while trying to access project data while trying to write on the file.");
+            }
         }
 
         /// <summary>
@@ -119,20 +157,35 @@ namespace Civil_Construction_Management.Models.Repositories
         /// <returns>True if the project was deleted; otherwise, False.</returns>
         public bool DeleteProject(Project p)
         {
-            if (p == null)
-                return false;
 
-            var projects = LoadProjects();
-            if (projects == null)
-                return false;
+            try
+            {
 
-            var project = projects.FirstOrDefault<Project>(pr => pr.ID == p.ID);
-            if (project == null)
-                return false;
+                if (p == null)
+                    return false;
 
-            projects.Remove(project);
+                var projects = LoadProjects();
+                if (projects == null)
+                    throw new DataAccessException("Error: It wasn't possible to load the project's data.");
 
-            return x.WriteJson<Project>(projects, _projectFile);
+                var project = projects.FirstOrDefault<Project>(pr => pr.ID == p.ID);
+                if (project == null)
+                    return false;
+
+                projects.Remove(project);
+
+                return x.WriteJson<Project>(projects, _projectFile);
+            }
+
+            catch (DataAccessException)
+            {
+                throw;
+            }
+
+            catch (Exception)
+            {
+                throw new DataAccessException("An error has occur while trying to access project data while trying to delete a project.");
+            }
         }
 
         #endregion
@@ -152,17 +205,31 @@ namespace Civil_Construction_Management.Models.Repositories
             if (projectID < 0 || material == null)
                 return false;
 
-            var projects = LoadProjects();
-            if (projects == null)
-                return false;
+            try
+            {
 
-            var project = projects.FirstOrDefault<Project>(p => p.ID == projectID);
-            if (project == null)
-                return false;
+                var projects = LoadProjects();
+                if (projects == null)
+                    throw new DataAccessException("An error has occur while trying to access project data while trying to load project's data for add material.");
 
-            project.Materials.Add(material);
+                var project = projects.FirstOrDefault<Project>(p => p.ID == projectID);
+                if (project == null)
+                    return false;
 
-            return x.WriteJson<Project>(projects, _projectFile);
+                project.Materials.Add(material);
+
+                return x.WriteJson<Project>(projects, _projectFile);
+            }
+
+            catch (DataAccessException)
+            {
+                throw;
+            }
+
+            catch (Exception)
+            {
+                throw new DataAccessException("An error has occur while trying to access project data while trying to add a material.");
+            }
         }
 
         /// <summary>
@@ -176,25 +243,39 @@ namespace Civil_Construction_Management.Models.Repositories
             if (material == null)
                 return false;
 
-            var projects = LoadProjects();
-            if (projects == null)
-                return false;
+            try
+            {
 
-            var project = projects.FirstOrDefault<Project>(p => p.ID == material.ProjectID);
-            if (project == null)
-                return false;
+                var projects = LoadProjects();
+                if (projects == null)
+                    throw new DataAccessException("An error has occur while trying to access project data while trying to load project's data to delete a material.");
 
-            var materialToDelete = project.Materials.FirstOrDefault<Material>(m =>
-                m.Name == material.Name &&
-                m.Quantity == material.Quantity &&
-                m.UnitPrice == material.UnitPrice);
+                var project = projects.FirstOrDefault<Project>(p => p.ID == material.ProjectID);
+                if (project == null)
+                    return false;
 
-            if (materialToDelete == null)
-                return false;
+                var materialToDelete = project.Materials.FirstOrDefault<Material>(m =>
+                    m.Name == material.Name &&
+                    m.Quantity == material.Quantity &&
+                    m.UnitPrice == material.UnitPrice);
 
-            project.Materials.Remove(materialToDelete);
+                if (materialToDelete == null)
+                    return false;
 
-            return x.WriteJson<Project>(projects, _projectFile);
+                project.Materials.Remove(materialToDelete);
+
+                return x.WriteJson<Project>(projects, _projectFile);
+            }
+
+            catch (DataAccessException)
+            {
+                throw;
+            }
+
+            catch (Exception)
+            {
+                throw new DataAccessException("An error has occur while trying to access project data while trying to delete a project's material.");
+            }
         }
 
         #endregion
@@ -214,17 +295,31 @@ namespace Civil_Construction_Management.Models.Repositories
             if (projectID < 0 || service == null)
                 return false;
 
-            var projects = LoadProjects();
-            if (projects == null)
-                return false;
+            try
+            {
 
-            var project = projects.FirstOrDefault<Project>(p => p.ID == projectID);
-            if (project == null)
-                return false;
+                var projects = LoadProjects();
+                if (projects == null)
+                    throw new DataAccessException("An error has occur while trying to access project's data while trying to access project's data to add a service.");
 
-            project.Services.Add(service);
+                var project = projects.FirstOrDefault<Project>(p => p.ID == projectID);
+                if (project == null)
+                    return false;
 
-            return x.WriteJson<Project>(projects, _projectFile);
+                project.Services.Add(service);
+
+                return x.WriteJson<Project>(projects, _projectFile);
+            }
+
+            catch (DataAccessException)
+            {
+                throw;
+            }
+
+            catch (Exception)
+            {
+                throw new DataAccessException("An error has occur while trying to access project's data while trying to add a service to a project.");
+            }
         }
 
         /// <summary>
@@ -238,27 +333,40 @@ namespace Civil_Construction_Management.Models.Repositories
             if (service == null)
                 return false;
 
-            var projects = LoadProjects();
-            if (projects == null)
-                return false;
+            try
+            {
+                var projects = LoadProjects();
+                if (projects == null)
+                    throw new DataAccessException("An error has occur while trying to access project's data while trying to load project's data to delete a service.");
 
-            var project = projects.FirstOrDefault<Project>(p => p.ID == service.ProjectID);
-            if (project == null)
-                return false;
+                var project = projects.FirstOrDefault<Project>(p => p.ID == service.ProjectID);
+                if (project == null)
+                    return false;
 
-            var serviceToDelete = project.Services.FirstOrDefault<Service>(s =>
-                s.CompanyName == service.CompanyName &&
-                s.Status == service.Status &&
-                s.ServiceHours == service.ServiceHours &&
-                s.StartDate == service.StartDate &&
-                s.EndDate == service.EndDate);
+                var serviceToDelete = project.Services.FirstOrDefault<Service>(s =>
+                    s.CompanyName == service.CompanyName &&
+                    s.Status == service.Status &&
+                    s.ServiceHours == service.ServiceHours &&
+                    s.StartDate == service.StartDate &&
+                    s.EndDate == service.EndDate);
 
-            if (serviceToDelete == null)
-                return false;
+                if (serviceToDelete == null)
+                    return false;
 
-            project.Services.Remove(serviceToDelete);
+                project.Services.Remove(serviceToDelete);
 
-            return x.WriteJson<Project>(projects, _projectFile);
+                return x.WriteJson<Project>(projects, _projectFile);
+            }
+
+            catch (DataAccessException)
+            {
+                throw;
+            }
+
+            catch (Exception)
+            {
+                throw new DataAccessException("An error has occur while trying to access project's data while trying to delete a service.");
+            }
         }
 
         #endregion
@@ -278,17 +386,32 @@ namespace Civil_Construction_Management.Models.Repositories
             if (projectID < 0 || employee == null)
                 return false;
 
-            var projects = LoadProjects();
-            if (projects == null)
-                return false;
+            try
+            {
+                var projects = LoadProjects();
+                if (projects == null)
+                    throw new DataAccessException("An error has occur while trying to access project's data while trying to load project's data to add an employee.");
 
-            var project = projects.FirstOrDefault<Project>(p => p.ID == projectID);
-            if (project == null)
-                return false;
+                var project = projects.FirstOrDefault<Project>(p => p.ID == projectID);
+                if (project == null)
+                    return false;
 
-            project.Employees.Add(employee);
+                project.Employees.Add(employee);
 
-            return x.WriteJson<Project>(projects, _projectFile);
+                return x.WriteJson<Project>(projects, _projectFile);
+            }
+
+            catch (DataAccessException)
+            {
+
+                throw;
+            }
+
+            catch (Exception)
+            {
+
+                throw new DataAccessException("An error has occur while trying to access project's data while trying to add an employee.");
+            }
         }
 
         /// <summary>
@@ -302,23 +425,36 @@ namespace Civil_Construction_Management.Models.Repositories
             if (employee == null)
                 return false;
 
-            var projects = LoadProjects();
-            if (projects == null)
-                return false;
+            try
+            {
+                var projects = LoadProjects();
+                if (projects == null)
+                    throw new DataAccessException("An error has occur while trying to access project's data while trying to load project's data to remove an employee.");
 
-            var project = projects.FirstOrDefault<Project>(p => p.ID == employee.ProjectID);
-            if (project == null)
-                return false;
+                var project = projects.FirstOrDefault<Project>(p => p.ID == employee.ProjectID);
+                if (project == null)
+                    return false;
 
-            var employeeToDelete = project.Employees.FirstOrDefault<Employee>(e =>
-                e.ID == employee.ID);
+                var employeeToDelete = project.Employees.FirstOrDefault<Employee>(e =>
+                    e.ID == employee.ID);
 
-            if (employeeToDelete == null)
-                return false;
+                if (employeeToDelete == null)
+                    return false;
 
-            project.Employees.Remove(employeeToDelete);
+                project.Employees.Remove(employeeToDelete);
 
-            return x.WriteJson<Project>(projects, _projectFile);
+                return x.WriteJson<Project>(projects, _projectFile);
+            }
+
+            catch (DataAccessException)
+            {
+                throw;
+            }
+
+            catch (Exception)
+            {
+                throw new DataAccessException("An error has occur while trying to access project's data while trying to remove an employee");
+            }
         }
 
         #endregion

@@ -18,6 +18,7 @@ namespace Civil_Construction_Management.ViewModels.Services
         /// <param name="employeeRepository">The repository responsible for employee persistence.</param>
         public ManagerEmployee(IEmployeeRepository employeeRepository)
         {
+
             _employeeRepository = employeeRepository;
         }
 
@@ -26,12 +27,12 @@ namespace Civil_Construction_Management.ViewModels.Services
         /// </summary>
         /// <param name="e">The employee to verify.</param>
         /// <returns>True if the employee exists; otherwise false.</returns>
-        /// <exception cref="ArgumentException">Thrown when the employee argument is null.</exception>
         public bool EmployeeExists(Employee e)
         {
-            if (e == null)
-                throw new ArgumentException("Invalid argument.");
 
+            if (e == null)
+                throw new ArgumentException("Employee can't be null");
+                        
             if (_employeeRepository.GetEmployeeByID(e.ID) == default)
                 return false;
 
@@ -46,19 +47,44 @@ namespace Civil_Construction_Management.ViewModels.Services
         /// True if the employee is valid and successfully stored;
         /// otherwise false.
         /// </returns>
-        /// <exception cref="ArgumentException">Thrown when the employee argument is null.</exception>
         public bool CreateEmployee(Employee e)
         {
             if (e == null)
-                throw new ArgumentException("Invalid argument.");
+                return false;
 
             // Field validation
-            if (string.IsNullOrEmpty(e.Name)) return false;
-            if (string.IsNullOrEmpty(e.NIF) || e.NIF.Length != 9) return false;
-            if (string.IsNullOrEmpty(e.Email)) return false;
-            if (string.IsNullOrEmpty(e.PhoneNumber) || e.PhoneNumber.Length != 9) return false;
-            if (string.IsNullOrEmpty(e.Role)) return false;
-            if (e.SalaryHour < 0) return false;
+            if (string.IsNullOrEmpty(e.Name))
+                throw new ArgumentException("Employee's Name can't be null");
+
+            if (e.Name.Length > 50)
+                throw new ArgumentException("Employee's Name is too long. Must be 50 characters or less");
+
+            if (string.IsNullOrEmpty(e.NIF))
+                throw new ArgumentException("Employee's NIF can't be null");
+
+            if (e.NIF.Length != 9)
+                throw new ArgumentException("Employee's NIF must be 9 characters long");
+
+            if (string.IsNullOrEmpty(e.Email))
+                throw new ArgumentException("Employee's email can't be null");
+
+            if (e.Email.Length > 50)
+                throw new ArgumentException("Employee's email is too long. Must be 50 characters or less");
+
+            if (!e.Email.Contains('@'))
+                throw new ArgumentException("Check employee's email format");
+
+            if (string.IsNullOrEmpty(e.PhoneNumber))
+                throw new ArgumentException("Employee's contact can't be null");
+
+            if (e.PhoneNumber.Length != 9)
+                throw new ArgumentException("Employee's contact must be 9 characters long");
+
+            if (string.IsNullOrEmpty(e.Role))
+                throw new ArgumentException("Employee's role can't be null");
+
+            if (e.SalaryHour < 5.75)
+                throw new ArgumentException("Employee's salary must be at least the minimum wage");
 
             // Prevent duplicates
             if (EmployeeExists(e)) return false;
@@ -77,6 +103,39 @@ namespace Civil_Construction_Management.ViewModels.Services
         {
             if (updatedEmployee == null)
                 return false;
+
+            if (string.IsNullOrEmpty(updatedEmployee.Name))
+                throw new ArgumentException("Employee's Name can't be null");
+
+            if (updatedEmployee.Name.Length > 50)
+                throw new ArgumentException("Employee's Name is too long. Must be 50 characters or less");
+
+            if (string.IsNullOrEmpty(updatedEmployee.NIF))
+                throw new ArgumentException("Employee's NIF can't be null");
+
+            if (updatedEmployee.NIF.Length != 9)
+                throw new ArgumentException("Employee's NIF must be 9 characters long");
+
+            if (string.IsNullOrEmpty(updatedEmployee.Email))
+                throw new ArgumentException("Employee's email can't be null");
+
+            if (updatedEmployee.Email.Length > 50)
+                throw new ArgumentException("Employee's email is too long. Must be 50 characters or less");
+
+            if (!updatedEmployee.Email.Contains('@'))
+                throw new ArgumentException("Check employee's email format");
+
+            if (string.IsNullOrEmpty(updatedEmployee.PhoneNumber))
+                throw new ArgumentException("Employee's contact can't be null");
+
+            if (updatedEmployee.PhoneNumber.Length != 9)
+                throw new ArgumentException("Employee's contact must be 9 characters long");
+
+            if (string.IsNullOrEmpty(updatedEmployee.Role))
+                throw new ArgumentException("Employee's role can't be null");
+
+            if (updatedEmployee.SalaryHour < 5.75)
+                throw new ArgumentException("Employee's salary must be at least the minimum wage");
 
             var employees = _employeeRepository.GetAllEmployees();
 
@@ -104,14 +163,13 @@ namespace Civil_Construction_Management.ViewModels.Services
         /// <returns>
         /// True if deletion succeeds; otherwise false.
         /// </returns>
-        /// <exception cref="ArgumentException">Thrown when the employee argument is null.</exception>
         public bool DeleteEmployee(Employee e)
         {
             if (e == null)
-                throw new ArgumentException("Invalid argument.");
+                return false;
 
             if (!EmployeeExists(e))
-                return false;
+                throw new ArgumentException("Employee doesn't exist");
 
             return _employeeRepository.RemoveEmployee(e);
         }
@@ -122,6 +180,7 @@ namespace Civil_Construction_Management.ViewModels.Services
         /// <returns>A list of employees.</returns>
         public List<Employee> GetAllEmployees()
         {
+
             return _employeeRepository.GetAllEmployees();
         }
     }

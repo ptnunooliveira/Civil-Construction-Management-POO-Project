@@ -1,4 +1,5 @@
-﻿using Civil_Construction_Management.Models.Repositories.Interfaces;
+﻿using Civil_Construction_Management.Exceptions;
+using Civil_Construction_Management.Models.Repositories.Interfaces;
 using DLL___Project_Support;
 using System.IO;
 
@@ -40,11 +41,21 @@ namespace Civil_Construction_Management.Models.Repositories
         public User GetUserByUsername(string username)
         {
 
-            if (username == null)
-                throw new ArgumentException("Argument not valid.");
+            if (string.IsNullOrWhiteSpace(username))
+                throw new ArgumentException("Username can't be empty or null.");
 
-            List<User> users = x.ReadJson<User>(_usersFile);
-            return users.FirstOrDefault(x => x.Username == username);
+            try
+            {
+
+                List<User> users = x.ReadJson<User>(_usersFile);
+                return users.FirstOrDefault(x => x.Username == username);
+            }
+
+            catch(Exception)
+            {
+
+                throw new DataAccessException("Error accessing user data while searching by username");
+            }
         }
 
         /// <summary>
@@ -56,10 +67,20 @@ namespace Civil_Construction_Management.Models.Repositories
         public bool AddUser(User user)
         {
 
-            if (user == default || user == null)
+            if (user == null)
                 throw new ArgumentException("Argument not valid.");
 
-            return x.AppendJson<User>(user, _usersFile);
+            try
+            {
+
+                return x.AppendJson<User>(user, _usersFile);
+            }
+
+            catch (Exception)
+            {
+
+                throw new DataAccessException("An error has occur accessing user data while adding a new user");
+            }
         }
     }
 }

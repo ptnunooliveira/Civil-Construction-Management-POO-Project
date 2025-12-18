@@ -1,5 +1,7 @@
-﻿using Civil_Construction_Management.Models;
+﻿using Civil_Construction_Management.Exceptions;
+using Civil_Construction_Management.Models;
 using Civil_Construction_Management.ViewModels.Interfaces;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Civil_Construction_Management.ViewModels
@@ -230,34 +232,51 @@ namespace Civil_Construction_Management.ViewModels
                     SalaryHour,
                     StartDate.Date);
 
-                bool success = CreateEmployee(e);
-                if (!success)
-                    throw new ArgumentException("It wasn't possible to create the employee.");
+                try
+                {
+
+                    bool success = _managerEmployee.CreateEmployee(e);
+                    if (success)
+                        HideWindowAction?.Invoke();
+                }
+
+                catch (ArgumentException ex)
+                {
+
+                    MessageBox.Show(ex.Message, "WARNING", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+
+                catch(DataAccessException ex)
+                {
+
+                    MessageBox.Show(ex.Message, "WARNING", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
+
             else if (_editMode == true)
             {
-                // Update the existing employee
-                bool success = _managerEmployee.UpdateEmployee(_employee);
-                if (!success)
-                    return;
+
+                try
+                {
+
+                    // Update the existing employee
+                    bool success = _managerEmployee.UpdateEmployee(_employee);
+                    if (success)
+                        HideWindowAction?.Invoke();
+                }
+
+                catch(ArgumentException ex)
+                {
+
+                    MessageBox.Show(ex.Message, "WARNING", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+
+                catch (DataAccessException ex)
+                {
+
+                    MessageBox.Show(ex.Message, "WARNING", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
-
-            // Close associated window
-            HideWindowAction?.Invoke();
-        }
-
-        /// <summary>
-        /// Attempts to create a new employee using the manager service.
-        /// </summary>
-        /// <param name="e">The employee to be created.</param>
-        /// <returns>True if creation succeeds; otherwise, false.</returns>
-        /// <exception cref="ArgumentException">Thrown when the provided employee is null.</exception>
-        public bool CreateEmployee(Employee e)
-        {
-            if (e == null)
-                throw new ArgumentException("Invalid argument.");
-
-            return _managerEmployee.CreateEmployee(e);
         }
 
         #endregion

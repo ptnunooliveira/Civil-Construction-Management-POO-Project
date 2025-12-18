@@ -1,5 +1,7 @@
-﻿using Civil_Construction_Management.Models;
+﻿using Civil_Construction_Management.Exceptions;
+using Civil_Construction_Management.Models;
 using Civil_Construction_Management.ViewModels.Interfaces;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Civil_Construction_Management.ViewModels
@@ -139,11 +141,25 @@ namespace Civil_Construction_Management.ViewModels
             Material m = new Material(Name, Quantity, UnitPrice);
             m.ProjectID = ProjectID;
 
-            bool success = _managerProject.AddMaterialToProject(ProjectID, m);
-            if (!success)
-                return;
+            try
+            {
+                bool success = _managerProject.AddMaterialToProject(ProjectID, m);                
 
-            HideWindowAction?.Invoke();
+                if(success)
+                    HideWindowAction?.Invoke();
+            }
+
+            catch(ArgumentException e)
+            {
+
+                MessageBox.Show(e.Message, "WARNING", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            catch(DataAccessException e)
+            {
+
+                MessageBox.Show(e.Message, "WARNING", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         #endregion

@@ -1,4 +1,5 @@
-﻿using Civil_Construction_Management.Models;
+﻿using Civil_Construction_Management.Exceptions;
+using Civil_Construction_Management.Models;
 using Civil_Construction_Management.ViewModels.Enums;
 using Civil_Construction_Management.ViewModels.Interfaces;
 using System.Windows;
@@ -118,13 +119,14 @@ namespace Civil_Construction_Management.ViewModels
         #endregion
 
 
-        #region Command Handlers
+        #region Methods
 
         /// <summary>
         /// Navigates back to the login window when triggered by the user.
         /// </summary>
         private void ExecuteLoginPageCommand(object parameter)
         {
+
             Window loginWindow = _viewFactory.CreateView(ViewType.Login);
 
             HideWindowAction?.Invoke(); // Hides current view
@@ -137,41 +139,40 @@ namespace Civil_Construction_Management.ViewModels
         /// </summary>
         private void ExecuteCreateAccountCommand(object parameter)
         {
-            // Validate username availability
-            if (_authenticationService.ValidUsername(Username))
+
+            try
             {
-                _messageService.ShowMessage("Username is not valid.");
-                return;
+                // Create user object
+                var newUser = new User
+                {
+                    Username = Username,
+                    Password = Password,
+                    PasswordConfirmation = PasswordConfirmation
+                };
+
+                bool success = _authenticationService.CreateUser(newUser);
+                if (success)
+                {
+                    MessageBox.Show("Account created successfully!");
+                    Window loginWindow = _viewFactory.CreateView(ViewType.Login);
+
+                    HideWindowAction?.Invoke();
+                    loginWindow.Show();
+                }
             }
 
-            // Validate matching passwords
-            if (_password != _passwordConfirmation)
+            catch (ArgumentException e)
             {
-                _messageService.ShowMessage("The passwords must be the same.");
-                return;
+
+                MessageBox.Show(e.Message, "WARNING", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
-            // Create user object
-            var newUser = new User
+            catch (DataAccessException e)
             {
-                Username = Username,
-                Password = Password
-            };
 
-            // Attempt to create user
-            if (!_authenticationService.CreateUser(newUser))
-            {
-                _messageService.ShowMessage("It was not possible to create a new user. Try again.");
-                return;
+                MessageBox.Show(e.Message, "WARNING", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
-            _messageService.ShowMessage("Account created successfully.");
-
-            // Navigate back to login window
-            Window loginWindow = _viewFactory.CreateView(ViewType.Login);
-
-            HideWindowAction?.Invoke();
-            loginWindow.Show();
         }
 
         #endregion

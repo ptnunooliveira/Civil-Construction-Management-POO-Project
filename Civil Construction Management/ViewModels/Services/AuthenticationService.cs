@@ -20,6 +20,7 @@ namespace Civil_Construction_Management.ViewModels.Services
         /// </param>
         public AuthenticationService(IUserRepository userRepository)
         {
+
             _userRepository = userRepository;
         }
 
@@ -31,18 +32,18 @@ namespace Civil_Construction_Management.ViewModels.Services
         /// <returns>
         /// True if the user exists and the password matches; otherwise false.
         /// </returns>
-        /// <exception cref="ArgumentNullException">
-        /// Thrown when the username or password is null or empty.
-        /// </exception>
         public bool UserExists(string username, string password)
         {
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
-                throw new ArgumentNullException("Arguments not defined.");
+                throw new ArgumentException("username or password can't be null");
 
             User user = _userRepository.GetUserByUsername(username);
 
             if (user == null)
-                return false;
+                throw new ArgumentException("User doesn't exist");
+
+            if (user.Password != password)
+                throw new ArgumentException("Username or password incorrect");
 
             return user.Password == password;
         }
@@ -54,20 +55,17 @@ namespace Civil_Construction_Management.ViewModels.Services
         /// <returns>
         /// True if the username exists; otherwise false.
         /// </returns>
-        /// <exception cref="ArgumentNullException">
-        /// Thrown when the username is null or empty.
-        /// </exception>
-        public bool ValidUsername(string username)
+        private bool ValidUsername(string username)
         {
             if (string.IsNullOrEmpty(username))
-                throw new ArgumentNullException("Argument not defined.");
+                throw new ArgumentException("Username can't be null");
 
             User user = _userRepository.GetUserByUsername(username);
 
             if (user == default)
-                return false;
+                return true;
 
-            return true;
+            return false;
         }
 
         /// <summary>
@@ -75,17 +73,24 @@ namespace Civil_Construction_Management.ViewModels.Services
         /// </summary>
         /// <param name="user">The user to create.</param>
         /// <returns>True if the user was successfully created.</returns>
-        /// <exception cref="ArgumentException">
-        /// Thrown when the provided user object is null.
-        /// </exception>
         public bool CreateUser(User user)
         {
-            if (user == default)
-                throw new ArgumentException("Argument not defined.");
+            if (user == null)
+                throw new ArgumentException("User can't be null");
 
-            _userRepository.AddUser(user);
+            if (user.Password != user.PasswordConfirmation)
+                throw new ArgumentException("The passwords must be the same");
 
-            return true;
+            if (!ValidUsername(user.Username))
+                throw new ArgumentException("Username already exists");
+
+            if (user.Username.Length > 20)
+                throw new ArgumentException("Username is too long. Must be 20 characters or less");
+
+            if (user.Password.Length < 5)
+                throw new ArgumentException("Password must be at least 5 characters long");
+
+            return _userRepository.AddUser(user);
         }
     }
 }

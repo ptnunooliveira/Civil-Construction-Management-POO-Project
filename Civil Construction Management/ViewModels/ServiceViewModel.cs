@@ -1,5 +1,7 @@
-﻿using Civil_Construction_Management.Models;
+﻿using Civil_Construction_Management.Exceptions;
+using Civil_Construction_Management.Models;
 using Civil_Construction_Management.ViewModels.Interfaces;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Civil_Construction_Management.ViewModels
@@ -169,11 +171,24 @@ namespace Civil_Construction_Management.ViewModels
             Service s = new Service(CompanyName, ServiceHours, Status, StartDate, EndDate);
             s.ProjectID = ProjectID;
 
-            bool success = _managerProject.AddServiceToProject(ProjectID, s);
-            if (!success)
-                return;
+            try
+            {
+                bool success = _managerProject.AddServiceToProject(ProjectID, s);
+                if (success)
+                    HideWindowAction?.Invoke();
+            }
 
-            HideWindowAction?.Invoke();
+            catch(ArgumentException e)
+            {
+
+                MessageBox.Show(e.Message, "WARNING", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            catch(DataAccessException e)
+            {
+
+                MessageBox.Show(e.Message, "WARNING", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         #endregion

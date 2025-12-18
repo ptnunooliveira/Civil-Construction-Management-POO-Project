@@ -1,4 +1,5 @@
-﻿using Civil_Construction_Management.Models.Repositories.Interfaces;
+﻿using Civil_Construction_Management.Exceptions;
+using Civil_Construction_Management.Models.Repositories.Interfaces;
 using DLL___Project_Support;
 using System.IO;
 
@@ -23,13 +24,22 @@ namespace Civil_Construction_Management.Models.Repositories
         public EmployeeRepository()
         {
 
-            if (!Directory.Exists(_basePath))
-                Directory.CreateDirectory(_basePath);
+            try
+            {
 
-            _employeesFile = Path.Combine(_basePath, "employees.json");
+                if (!Directory.Exists(_basePath))
+                    Directory.CreateDirectory(_basePath);
 
-            if (!File.Exists(_employeesFile))
-                File.WriteAllText(_employeesFile, "[]");
+                _employeesFile = Path.Combine(_basePath, "employees.json");
+
+                if (!File.Exists(_employeesFile))
+                    File.WriteAllText(_employeesFile, "[]");
+            }
+
+            catch(IOException ex)
+            {
+                throw new IOException("An error has occur trying to open the file.");
+            }
         }
 
         /// <summary>
@@ -43,11 +53,19 @@ namespace Civil_Construction_Management.Models.Repositories
         public Employee GetEmployeeByID(int id)
         {
 
-            //if ()
-            //throw new ArgumentException("Invalid ID");
+            if (id < 1)
+                return null;
 
-            List<Employee> Employee = x.ReadJson<Employee>(_employeesFile);
-            return Employee.FirstOrDefault(e => e.ID == id);
+            try
+            {
+                List<Employee> Employee = x.ReadJson<Employee>(_employeesFile);
+                return Employee.FirstOrDefault(e => e.ID == id);
+            }
+
+            catch (Exception)
+            {
+                throw new DataAccessException("An error has occur accessing employee's data while trying to get an employee by id.");
+            }
         }
 
         /// <summary>
@@ -60,23 +78,38 @@ namespace Civil_Construction_Management.Models.Repositories
         {
 
             if (e == null)
-                throw new ArgumentException("Invalid employee.");
+                return false;
 
-            var employees = x.ReadJson<Employee>(_employeesFile);
-
-            int newID = 1;
-
-            foreach (var emp in employees)
+            try
             {
-                if (emp.ID >= newID)
-                    newID = emp.ID + 1;
+                var employees = x.ReadJson<Employee>(_employeesFile);
+                if (employees == null)
+                    throw new DataAccessException("An error has occur accessing employee's data while trying to read the employee's file in order to add an employee.");
+
+                int newID = 1;
+
+                foreach (var emp in employees)
+                {
+                    if (emp.ID >= newID)
+                        newID = emp.ID + 1;
+                }
+
+                e.ID = newID;
+
+                employees.Add(e);
+
+                return x.WriteJson<Employee>(employees, _employeesFile);
             }
 
-            e.ID = newID;
+            catch (DataAccessException)
+            {
+                throw;
+            }
 
-            employees.Add(e);
-
-            return x.WriteJson<Employee>(employees, _employeesFile);
+            catch (Exception)
+            {
+                throw new DataAccessException("An error has occur accessing employee's data while trying to access employee's data to add an employee.");
+            }
         }
 
         /// <summary>
@@ -91,19 +124,34 @@ namespace Civil_Construction_Management.Models.Repositories
         {
 
             if (e == null)
-                throw new ArgumentException("Invalid employee.");
-
-            List<Employee> _employees = x.ReadJson<Employee>(_employeesFile);
-
-
-            var tmp = _employees.FirstOrDefault(n => n.ID == e.ID);
-            if (tmp == null)
                 return false;
 
-            if (_employees.Remove(tmp))
-                return x.WriteJson<Employee>(_employees, _employeesFile);
+            try
+            {
 
-            return false;
+                List<Employee> _employees = x.ReadJson<Employee>(_employeesFile);
+                if (_employees == null)
+                    throw new DataAccessException("An error has occur accessing employee's data while trying to read employee's data for delete.");
+
+                var tmp = _employees.FirstOrDefault(n => n.ID == e.ID);
+                if (tmp == null)
+                    return false;
+
+                if (_employees.Remove(tmp))
+                    return x.WriteJson<Employee>(_employees, _employeesFile);
+
+                return false;
+            }
+
+            catch(DataAccessException)
+            {
+                throw;
+            }
+
+            catch (Exception)
+            {
+                throw new DataAccessException("An error has occur accessing employee's data while trying to delete an employee.");
+            }
         }
 
         /// <summary>
@@ -113,7 +161,16 @@ namespace Civil_Construction_Management.Models.Repositories
         public List<Employee> GetAllEmployees()
         {
 
-            return x.ReadJson<Employee>(_employeesFile);
+            try
+            {
+
+                return x.ReadJson<Employee>(_employeesFile);
+            }
+
+            catch (Exception)
+            {
+                throw new DataAccessException("An error has occur accessing employee's data while trying to read from employee's file.");
+            }
         }
 
         /// <summary>
@@ -127,7 +184,16 @@ namespace Civil_Construction_Management.Models.Repositories
             if (employees == null)
                 return false;
 
-            return x.WriteJson<Employee>(employees, _employeesFile);
+            try
+            {
+
+                return x.WriteJson<Employee>(employees, _employeesFile);
+            }
+
+            catch (Exception)
+            {
+                throw new DataAccessException("An error has occur accessing employee's data while trying to write on employee's file.");
+            }
         }
     }
 }

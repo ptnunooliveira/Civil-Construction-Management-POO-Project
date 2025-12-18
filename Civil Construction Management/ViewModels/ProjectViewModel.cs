@@ -1,4 +1,5 @@
-﻿using Civil_Construction_Management.Models;
+﻿using Civil_Construction_Management.Exceptions;
+using Civil_Construction_Management.Models;
 using Civil_Construction_Management.ViewModels.Interfaces;
 using System.Collections.ObjectModel;
 using System.Windows;
@@ -161,6 +162,7 @@ namespace Civil_Construction_Management.ViewModels
         /// </summary>
         public void ExecuteSaveProjectCommand(object parameter)
         {
+
             if (_editMode == false)
             {
                 // Creating a new project
@@ -170,22 +172,53 @@ namespace Civil_Construction_Management.ViewModels
                     Status
                 );
 
-                bool success = _managerProject.AddProject(p);
+                try
+                {
 
-                if (!success)
-                    MessageBox.Show("It wasn't possible to add the project.");
+                    bool success = _managerProject.AddProject(p);
 
-                HideWindowAction?.Invoke();
+                    if (success)
+                        HideWindowAction?.Invoke();
+                }
+
+                catch (ArgumentException e)
+                {
+
+                    MessageBox.Show(e.Message, "WARNING", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+
+                catch (DataAccessException e)
+                {
+
+                    MessageBox.Show(e.Message, "WARNING", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
+
             else if (_editMode == true)
             {
-                // Editing existing project
-                bool success = _managerProject.UpdateProject(_project);
-                if (!success)
-                    return;
-            }
 
-            HideWindowAction?.Invoke();
+                try
+                {
+                    // Editing existing project
+                    bool success = _managerProject.UpdateProject(_project);
+                    if (!success)
+                        return;
+
+                    HideWindowAction?.Invoke();
+                }
+
+                catch (ArgumentException e)
+                {
+
+                    MessageBox.Show(e.Message, "WARNING", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+
+                catch (DataAccessException e)
+                {
+
+                    MessageBox.Show(e.Message, "WARNING", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }                            
         }
 
         #endregion

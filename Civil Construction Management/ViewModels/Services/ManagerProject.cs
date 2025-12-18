@@ -42,7 +42,16 @@ namespace Civil_Construction_Management.ViewModels.Services
         public bool AddProject(Project p)
         {
             if (p == null)
-                return false;
+                throw new ArgumentException("Project can't be null.");
+
+            if (p.ClientName.Length > 30)
+                throw new ArgumentException("Client Name is too long. Must be 30 characters or less");
+
+            if (p.Address.Length > 50)
+                throw new ArgumentException("Project's address is too long. Must be 50 characters or less");
+
+            if (p.Status.Length > 20)
+                throw new ArgumentException("Project's status is too long. Must be 20 characters or less");
 
             return _projectRepository.AddProject(p);
         }
@@ -56,6 +65,15 @@ namespace Civil_Construction_Management.ViewModels.Services
         {
             if (editedProject == null)
                 return false;
+
+            if (editedProject.ClientName.Length > 30)
+                throw new ArgumentException("Client Name is too long. Must be 30 characters or less");
+
+            if (editedProject.Address.Length > 50)
+                throw new ArgumentException("Project's address is too long. Must be 50 characters or less");
+
+            if (editedProject.Status.Length > 20)
+                throw new ArgumentException("Project's status is too long. Must be 20 characters or less");
 
             var projects = _projectRepository.LoadProjects();
             if (projects == null)
@@ -78,6 +96,7 @@ namespace Civil_Construction_Management.ViewModels.Services
         /// <returns>A list of projects.</returns>
         public List<Project> LoadProjects()
         {
+
             return _projectRepository.LoadProjects();
         }
 
@@ -106,8 +125,18 @@ namespace Civil_Construction_Management.ViewModels.Services
         /// <returns>True if the material was added; otherwise false.</returns>
         public bool AddMaterialToProject(int projectID, Material material)
         {
+
             if (projectID < 0 || material == null)
                 return false;
+
+            if (material.Name.Length > 50)
+                throw new ArgumentException("Material name is too long. Must be 50 characters or less");
+
+            if (material.Quantity < 1)
+                throw new ArgumentException("Material's quantity must be at least one unit");
+
+            if (material.UnitPrice <= 0)
+                throw new ArgumentException("Material's unit price must be positive.");
 
             return _projectRepository.AddMaterialToProject(projectID, material);
         }
@@ -119,6 +148,7 @@ namespace Civil_Construction_Management.ViewModels.Services
         /// <returns>True if the material was deleted; otherwise false.</returns>
         public bool DeleteMaterial(Material material)
         {
+
             if (material == null)
                 return false;
 
@@ -137,8 +167,21 @@ namespace Civil_Construction_Management.ViewModels.Services
         /// <returns>True if the service was added; otherwise false.</returns>
         public bool AddServiceToProject(int projectID, Service service)
         {
+
             if (projectID < 0 || service == null)
                 return false;
+
+            if (service.CompanyName.Length > 30)
+                throw new ArgumentException("Service's company name is too long. Must be 30 characters or less");
+
+            if (service.ServiceHours < 0)
+                throw new ArgumentException("Service hours must be positive.");
+
+            if (service.Status.Length > 20)
+                throw new ArgumentException("Service's status is too long. Must be 20 characters or less");
+
+            if (service.EndDate < service.StartDate)
+                throw new ArgumentException("End date must end after the start date");
 
             return _projectRepository.AddServiceToProject(projectID, service);
         }
@@ -150,6 +193,7 @@ namespace Civil_Construction_Management.ViewModels.Services
         /// <returns>True if the service was removed; otherwise false.</returns>
         public bool DeleteService(Service service)
         {
+
             if (service == null)
                 return false;
 

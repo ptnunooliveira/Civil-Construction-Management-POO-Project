@@ -13,8 +13,12 @@
 
         /// <summary>
         /// Gets or sets the user's password.
-        /// Note: In a real-world system this should be stored in a hashed format.
         /// </summary>
         public string Password { get; set; }
+
+        /// <summary>
+        /// Gets or sets the user's confirmation password.
+        /// </summary>
+        public string PasswordConfirmation { get; set; }
     }
 }

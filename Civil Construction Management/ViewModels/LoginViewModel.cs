@@ -1,4 +1,5 @@
-﻿using Civil_Construction_Management.ViewModels.Enums;
+﻿using Civil_Construction_Management.Exceptions;
+using Civil_Construction_Management.ViewModels.Enums;
 using Civil_Construction_Management.ViewModels.Interfaces;
 using System.Windows;
 using System.Windows.Input;
@@ -95,6 +96,8 @@ namespace Civil_Construction_Management.ViewModels
 
         #endregion
 
+
+        #region Constructor
         /// <summary>
         /// Initializes a new instance of the LoginViewModel with necessary services
         /// and sets up the available commands.
@@ -109,6 +112,12 @@ namespace Civil_Construction_Management.ViewModels
             CreateAccountPageCommand = new ViewModelCommand(ExecuteCreateAccountPageCommand);
         }
 
+
+        #endregion
+
+
+        #region Methods
+
         /// <summary>
         /// Attempts to log the user in using the provided credentials.
         /// If successful, opens the Main window.
@@ -116,16 +125,31 @@ namespace Civil_Construction_Management.ViewModels
         /// </summary>
         private void ExecuteLoginCommand(object parameter)
         {
-            if (_authenticationService.UserExists(Username, Password))
-            {
-                Window mainWindow = _viewFactory.CreateView(ViewType.Main);
 
-                HideWindowAction?.Invoke();
-                mainWindow.Show();
-            }
-            else
+            try
             {
-                _messageService.ShowMessage("No user");
+
+                bool success = _authenticationService.UserExists(Username, Password);
+                if (success)
+                {
+
+                    Window mainWindow = _viewFactory.CreateView(ViewType.Main);
+
+                    HideWindowAction?.Invoke();
+                    mainWindow.Show();
+                }
+            }
+
+            catch (ArgumentException ex)
+            {
+
+                MessageBox.Show(ex.Message, "WARNING", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            catch (DataAccessException ex)
+            {
+
+                MessageBox.Show(ex.Message, "WARNING", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -140,4 +164,7 @@ namespace Civil_Construction_Management.ViewModels
             createAccountWindow.Show();
         }
     }
+
+    #endregion
+
 }
