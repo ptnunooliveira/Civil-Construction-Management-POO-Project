@@ -11,10 +11,17 @@ namespace Civil_Construction_Management.Models.Repositories
     /// </summary>
     public class UserRepository : IUserRepository
     {
+
+        #region Private Fields
+
         private readonly string _usersFile;
         private string _basePath = Path.Combine("." + Path.DirectorySeparatorChar, "Data");
-
         private readonly VerifyRepositories x = new VerifyRepositories();
+
+        #endregion
+
+
+        #region Constructor
 
         /// <summary>
         /// Initializes the repository, ensures the Data directory exists, 
@@ -31,6 +38,11 @@ namespace Civil_Construction_Management.Models.Repositories
             if (!File.Exists(_usersFile))
                 File.WriteAllText(_usersFile, "[]");
         }
+
+        #endregion
+
+
+        #region Methods
 
         /// <summary>
         /// Retrieves a user based on their username.
@@ -82,5 +94,7 @@ namespace Civil_Construction_Management.Models.Repositories
                 throw new DataAccessException("An error has occur accessing user data while adding a new user");
             }
         }
+
+        #endregion
     }
 }

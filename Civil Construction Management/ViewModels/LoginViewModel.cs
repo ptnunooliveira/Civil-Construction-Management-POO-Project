@@ -138,6 +138,12 @@ namespace Civil_Construction_Management.ViewModels
                     HideWindowAction?.Invoke();
                     mainWindow.Show();
                 }
+
+                else
+                {
+
+                    MessageBox.Show("Username or Password are incorrect.", "Invalid Credentials", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
             }
 
             catch (ArgumentException ex)

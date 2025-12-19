@@ -10,7 +10,11 @@ namespace Civil_Construction_Management.ViewModels.Services
     /// </summary>
     public class ManagerEmployee : IManagerEmployee
     {
+
         private readonly IEmployeeRepository _employeeRepository;
+
+
+        #region Constructor
 
         /// <summary>
         /// Initializes a new instance of <see cref="ManagerEmployee"/>.
@@ -21,6 +25,11 @@ namespace Civil_Construction_Management.ViewModels.Services
 
             _employeeRepository = employeeRepository;
         }
+
+        #endregion
+
+
+        #region Methods
 
         /// <summary>
         /// Checks whether a given employee exists in the repository.
@@ -183,5 +192,8 @@ namespace Civil_Construction_Management.ViewModels.Services
 
             return _employeeRepository.GetAllEmployees();
         }
+
+        #endregion
+
     }
 }

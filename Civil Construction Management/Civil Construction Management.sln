@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Civil Construction Manageme
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLL - Project Support", "..\..\DLL - Project Support\DLL - Project Support\DLL - Project Support.csproj", "{779A5DC1-9CC9-BB88-C3C1-A3E45EE1BC8C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Civil_Construction_Tests", "..\Civil_Construction_Tests\Civil_Construction_Tests.csproj", "{29C24D41-419E-44EC-8B44-B07D3FD65CDF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{779A5DC1-9CC9-BB88-C3C1-A3E45EE1BC8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{779A5DC1-9CC9-BB88-C3C1-A3E45EE1BC8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{779A5DC1-9CC9-BB88-C3C1-A3E45EE1BC8C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29C24D41-419E-44EC-8B44-B07D3FD65CDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29C24D41-419E-44EC-8B44-B07D3FD65CDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29C24D41-419E-44EC-8B44-B07D3FD65CDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29C24D41-419E-44EC-8B44-B07D3FD65CDF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

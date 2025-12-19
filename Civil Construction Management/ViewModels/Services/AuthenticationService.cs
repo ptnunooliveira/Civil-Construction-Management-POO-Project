@@ -40,10 +40,7 @@ namespace Civil_Construction_Management.ViewModels.Services
             User user = _userRepository.GetUserByUsername(username);
 
             if (user == null)
-                throw new ArgumentException("User doesn't exist");
-
-            if (user.Password != password)
-                throw new ArgumentException("Username or password incorrect");
+                return false;
 
             return user.Password == password;
         }
