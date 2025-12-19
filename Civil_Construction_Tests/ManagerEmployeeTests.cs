@@ -8,8 +8,15 @@ namespace Civil_Construction_Tests
     public class ManagerEmployeeTests
     {
 
+        #region Private Fields
+
         private Mock<IEmployeeRepository> _mockEmployeeRepository;
         private ManagerEmployee _managerEmployee;
+
+        #endregion
+
+
+        #region Setup
 
         [SetUp]
         public void Setup()
@@ -18,6 +25,29 @@ namespace Civil_Construction_Tests
             _mockEmployeeRepository = new Mock<IEmployeeRepository>();
             _managerEmployee = new ManagerEmployee(_mockEmployeeRepository.Object);
         }
+
+        #endregion
+
+
+        #region EmployeeExists_Tests
+
+        [Test]
+        public void EmployeeExists_Yes_ReturnsTrue()
+        {
+
+            // Arrange
+            Employee employee = new Employee("Nuno", "123456789", "987654321", "teste@gmail.com", "CEO", 10, DateTime.Now);
+            employee.ID = 1;
+            SetupEmployeeMock(employee, 1);
+
+            // Act
+            bool result = _managerEmployee.EmployeeExists(employee);
+
+            // Assert
+            Assert.IsTrue(result, "EmployeeExists should return true for an existent employee");
+        }
+
+        #endregion
 
 
         #region CreateEmployee_Tests
@@ -207,10 +237,20 @@ namespace Civil_Construction_Tests
         #endregion
 
 
+        #region SetupEmployeeMocks
+
         private void SetupEmployeeMock(Employee? employee)
         {
 
             _mockEmployeeRepository.Setup(repo => repo.AddEmployee(employee)).Returns(true);
         }
+
+        private void SetupEmployeeMock(Employee? employee, int id)
+        {
+
+            _mockEmployeeRepository.Setup(repo => repo.GetEmployeeByID(id)).Returns(employee);
+        }
+
+        #endregion
     }
 }

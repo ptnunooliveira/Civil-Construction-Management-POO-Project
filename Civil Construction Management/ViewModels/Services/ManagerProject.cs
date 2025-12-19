@@ -212,6 +212,7 @@ namespace Civil_Construction_Management.ViewModels.Services
         /// <returns>True if the employee was added; otherwise false.</returns>
         public bool AddEmployeeToProject(int projectID, Employee employee)
         {
+
             if (projectID < 0 || employee == null)
                 return false;
 

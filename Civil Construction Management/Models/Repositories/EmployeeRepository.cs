@@ -1,4 +1,9 @@
-﻿using Civil_Construction_Management.Exceptions;
+﻿/// <summary>
+/// EmployeeRepository is responsible for handling all data access operations related to employees.
+/// 
+/// This repository provides basic CRUD functionality.
+/// </summary>
+using Civil_Construction_Management.Exceptions;
 using Civil_Construction_Management.Models.Repositories.Interfaces;
 using DLL___Project_Support;
 using System.IO;
